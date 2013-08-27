@@ -1,269 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Nodegit by nodegit</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>Nodegit API documentation</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+      .nav .nav > li > a {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 30px;
+        font-size: 90%;
+      }
+    </style>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Nodegit</h1>
-        <p>Native asynchronous bindings to libgit2 for Node.js.</p>
-
-        <p class="view"><a href="https://github.com/nodegit/nodegit">View the Project on GitHub <small>nodegit/nodegit</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/nodegit/nodegit/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/nodegit/nodegit/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/nodegit/nodegit">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="nodegit" class="anchor" href="#nodegit"><span class="octicon octicon-link"></span></a>nodegit</h1>
-
-<blockquote>
-<p>Node.js libgit2 bindings</p>
-</blockquote>
-
-<p><strong>v0.0.78</strong> <a href="https://travis-ci.org/tbranyen/nodegit"><img src="https://travis-ci.org/tbranyen/nodegit.png" alt="Build
-Status"></a></p>
-
-<p>Maintained by Tim Branyen <a href="http://twitter.com/tbranyen">@tbranyen</a> and Michael
-Robinson <a href="http://twitter.com/codeofinterest">@codeofinterest</a>, with help from
-<a href="https://github.com/tbranyen/nodegit/contributors">awesome
-contributors</a>!</p>
-
-<h2>
-<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a>API Documentation</h2>
-
-<p>Documentation may be found here: <a href="http://tbranyen.github.com/nodegit/"><code>nodegit</code> documentation</a>.</p>
-
-<h2>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
-
-<p>Nodegit aims to eventually provide native asynchronous bindings for as much of
-libgit2 as possible, but we can't do it alone!</p>
-
-<p>We welcome pull requests, but please pay attention to the following: whether
-your lovely code fixes a bug or adds a new feature, please include unit tests
-that either prove the bug is fixed, or that your new feature works as expected.
-See <a href="#running-tests">running tests</a></p>
-
-<p>Unit tests are what makes the Node event loop go around.</p>
-
-<h2>
-<a name="building-and-installing" class="anchor" href="#building-and-installing"><span class="octicon octicon-link"></span></a>Building and installing</h2>
-
-<h3>
-<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
-
-<p>To install <code>nodegit</code> you need <code>Node.js</code>, <code>python</code> and <code>cmake</code>. To run unit tests you will need to have
-<code>git</code> installed and accessible from your <code>PATH</code> to fetch any <code>vendor/</code> addons.</p>
-
-<h3>
-<a name="easy-install-recommended" class="anchor" href="#easy-install-recommended"><span class="octicon octicon-link"></span></a>Easy install (Recommended)</h3>
-
-<p>This will install and configure everything you need to use <code>nodegit</code>.</p>
-
-<div class="highlight"><pre><span class="nv">$ </span>npm install nodegit
-</pre></div>
-
-<h3>
-<a name="mac-os-xlinuxunix" class="anchor" href="#mac-os-xlinuxunix"><span class="octicon octicon-link"></span></a>Mac OS X/Linux/Unix</h3>
-
-<h4>
-<a name="install-nodegit-by-cloning-source-from-github-and-running-node-install" class="anchor" href="#install-nodegit-by-cloning-source-from-github-and-running-node-install"><span class="octicon octicon-link"></span></a>Install <code>nodegit</code> by cloning source from GitHub and running <code>node install</code>:</h4>
-
-<div class="highlight"><pre><span class="nv">$ </span>git clone git://github.com/tbranyen/nodegit.git
-<span class="nv">$ </span><span class="nb">cd </span>nodegit
-<span class="nv">$ </span>node install
-</pre></div>
-
-<p>*Updating to a new version*</p>
-
-<div class="highlight"><pre><span class="nv">$ </span>git pull
-<span class="nv">$ </span>node install
-</pre></div>
-
-<h3>
-<a name="windows-via-cygwin" class="anchor" href="#windows-via-cygwin"><span class="octicon octicon-link"></span></a>Windows via Cygwin</h3>
-
-<h4>
-<a name="nodegit-has-been-compiled-and-tested-to-work-with-the-setup-required-to-build-and-run-nodejs-itself" class="anchor" href="#nodegit-has-been-compiled-and-tested-to-work-with-the-setup-required-to-build-and-run-nodejs-itself"><span class="octicon octicon-link"></span></a><code>nodegit</code> has been compiled and tested to work with the setup required to build and run <code>Node.js</code> itself.</h4>
-
-<p>Instructions on compiling <code>Node.js</code> on a Windows platform can be found here:
-<a href="https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-%28Windows%29">https://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)</a></p>
-
-<h2>
-<a name="api-example-usage" class="anchor" href="#api-example-usage"><span class="octicon octicon-link"></span></a>API Example Usage</h2>
-
-<h3>
-<a name="git-log-emulation" class="anchor" href="#git-log-emulation"><span class="octicon octicon-link"></span></a>Git Log Emulation</h3>
-
-<h4>
-<a name="convenience-api" class="anchor" href="#convenience-api"><span class="octicon octicon-link"></span></a>Convenience API</h4>
-
-<div class="highlight"><pre><span class="c1">// Load in the module.</span>
-<span class="kd">var</span> <span class="nx">git</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'nodegit'</span><span class="p">),</span>
-    <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'async'</span><span class="p">);</span>
-
-<span class="c1">// Open the repository in the current directory.</span>
-<span class="nx">git</span><span class="p">.</span><span class="nx">repo</span><span class="p">(</span><span class="s1">'.git'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">repository</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Use the master branch.</span>
-  <span class="nx">repository</span><span class="p">.</span><span class="nx">branch</span><span class="p">(</span><span class="s1">'master'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">branch</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Iterate over the revision history.</span>
-    <span class="nx">branch</span><span class="p">.</span><span class="nx">history</span><span class="p">().</span><span class="nx">on</span><span class="p">(</span><span class="s1">'commit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">commit</span><span class="p">)</span> <span class="p">{</span>
-
-      <span class="c1">// Print out `git log` emulation.</span>
-        <span class="nx">async</span><span class="p">.</span><span class="nx">series</span><span class="p">([</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">commit</span><span class="p">.</span><span class="nx">sha</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-            <span class="p">},</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">commit</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-            <span class="p">},</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">commit</span><span class="p">.</span><span class="nx">author</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">author</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">author</span><span class="p">.</span><span class="nx">name</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-                <span class="p">});</span>
-            <span class="p">},</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">commit</span><span class="p">.</span><span class="nx">author</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">author</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">author</span><span class="p">.</span><span class="nx">email</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-                <span class="p">});</span>
-            <span class="p">},</span>
-            <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">commit</span><span class="p">.</span><span class="nx">message</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">],</span> <span class="kd">function</span> <span class="nx">printCommit</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'SHA '</span> <span class="o">+</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">));</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">' &lt;'</span> <span class="o">+</span> <span class="nx">results</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'&gt;'</span><span class="p">);</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-
-<h2>
-<a name="running-tests" class="anchor" href="#running-tests"><span class="octicon octicon-link"></span></a>Running tests</h2>
-
-<p><strong><code>nodegit</code> library code is written adhering to a modified <code>JSHint</code>. Run these checks with <code>make lint</code> in the project root.</strong></p>
-
-<p><strong>To run unit tests ensure to update the submodules with <code>git submodule update --init</code> and install the development dependencies nodeunit and rimraf with <code>npm install</code>.</strong></p>
-
-<p>Then simply run <code>npm test</code> in the project root.</p>
-
-<h2>
-<a name="release-information" class="anchor" href="#release-information"><span class="octicon octicon-link"></span></a>Release information</h2>
-
-<p><strong>Can keep track of current method coverage at: <a href="http://bit.ly/tb_methods">http://bit.ly/tb_methods</a></strong></p>
-
-<h3>
-<a name="v007" class="anchor" href="#v007"><span class="octicon octicon-link"></span></a>v0.0.7:</h3>
-
-<pre><code>* Updated to work with Node ~0.8.
-* More unit tests
-* Added convenience build script
-* Locked libgit2 to version 0.15.0
-</code></pre>
-
-<h3>
-<a name="v006" class="anchor" href="#v006"><span class="octicon octicon-link"></span></a>v0.0.6:</h3>
-
-<pre><code>* Updated to work with Node ~0.6.
-</code></pre>
-
-<h3>
-<a name="v005" class="anchor" href="#v005"><span class="octicon octicon-link"></span></a>v0.0.5:</h3>
-
-<pre><code>* Added in fast Buffer support.
-* Blob raw write supported added, no convenience methods yet...
-* Updated libgit2 to version 0.12.0
-</code></pre>
-
-<h3>
-<a name="v004" class="anchor" href="#v004"><span class="octicon octicon-link"></span></a>v0.0.4:</h3>
-
-<pre><code>* Many fixes!
-* Blob raw write supported added, no convenience methods yet...
-* Updated libgit2 to version 0.12.0
-</code></pre>
-
-<h3>
-<a name="v003" class="anchor" href="#v003"><span class="octicon octicon-link"></span></a>v0.0.3:</h3>
-
-<pre><code>* More documented native source code
-* Updated convenience api code
-* More unit tests
-* Updated libgit2 to version 0.11.0
-* Windows Cygwin support! *albeit hacky*
-</code></pre>
-
-<h3>
-<a name="v002" class="anchor" href="#v002"><span class="octicon octicon-link"></span></a>v0.0.2:</h3>
-
-<pre><code>* More methods implemented
-* More unit tests
-* More API development
-* Tree and Blob support
-* Updated libgit2 to version 0.8.0
-</code></pre>
-
-<h3>
-<a name="v001" class="anchor" href="#v001"><span class="octicon octicon-link"></span></a>v0.0.1:</h3>
-
-<pre><code>* Some useful methods implemented
-* Some unit tests
-* Some documented source code
-* Useable build/code quality check tools
-* Node.js application that can be configured/built/installed via source and NPM
-* An API that can be easily extended with convenience methods in JS
-* An API that offers a familiar clean syntax that will make adoption and use much more likely
-* Open for public testing
-* GitHub landing page
-* Repo, Oid, Commit, Error, Ref, and RevWalk support
-* Built on libgit2 version 0.3.0
-</code></pre>
-
-<h2>
-<a name="getting-involved" class="anchor" href="#getting-involved"><span class="octicon octicon-link"></span></a>Getting involved</h2>
-
-<p>If you find this project of interest, please document all issues and fork if
-you feel you can provide a patch.  Testing is of huge importance; by simply
-running the unit tests on your system and reporting issues you can contribute!</p>
-
-<p><strong>Before submitting a pull request, please ensure both that you've added unit
-tests to cover your shiny new code, and that all unit tests and lint checks
-pass.</strong></p>
-
-<p><a href="http://githalytics.com/tbranyen/nodegit"><img src="https://cruel-carlota.pagodabox.com/a81b20d9f61dbcdc7c68002c6a564b5b" alt="githalytics.com alpha" title="githalytics.com"></a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/nodegit">nodegit</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+    <div class="container">
+      <h1>Nodegit</h1>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/html" id="template">
+      <div class="row">
+        <div class="col-md-3 files">
+          <ul class="nav nav-stacked">
+            <% data.forEach(function(file) { %>
+              <% if (file.ignore) return %>
+              <li>
+                <a href="#<%= file.jsClassName %>"><%= file.jsClassName %></a>
+                <ul class="nav">
+                  <% (file.functions || []).forEach(function(fn) { %>
+                    <% if (fn.ignore) return %>
+                    <li><a href="#<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></a></li>
+                  <% }) %>
+                </ul>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="col-md-9 info">
+          <% data.forEach(function(file) { %>
+            <% if (file.ignore) return %>
+            <section>
+              <h2 id="<%= file.jsClassName %>"><%= file.jsClassName %></h2>
+              <% (file.functions || []).forEach(function(fn) { %>
+                <% if (fn.ignore) return; %>
+                <section class="panel panel-default">
+                  <div class="panel-heading" id="<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></div>
+                  <div class="panel-body">
+                    <%= fn.description %>
+                    <%
+                      var args = [];
+                      fn.args.forEach(function(arg) {
+                        if (arg.isReturn || arg.isSelf || arg.isPayload) return;
+                        args.push(arg);
+                      });
+                    %>
+                    <% if (args.length > 0) { %>
+                      <div class="panel panel-primary">
+                        <div class="panel-heading">Arguments</div>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Class</th>
+                              <th>Name</th>
+                              <th>Comment</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% args.forEach(function(arg) { %>
+                              <tr>
+                                <td><%= arg.jsClassName %></td>
+                                <td><%= arg.name %></td>
+                                <td><%= arg.comment %></td>
+                              </tr>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    <% } %>
+                  </div>
+                </section>
+              <% }) %>
+            </section>
+          <% }) %>
+        </div>
+      </div>
+    </script>
+    <script type="text/javascript">
+      $.getJSON('params.json', function(data) {
+        $('.container').append(_.template($('#template').html())({data: data}));
+      });
+    </script>
   </body>
 </html>
