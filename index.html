@@ -26,64 +26,120 @@
         <div class="col-md-3 files">
           <ul class="nav nav-stacked">
             <% data.forEach(function(file) { %>
-              <% if (file.ignore) return %>
-              <li>
-                <a href="#<%= file.jsClassName %>"><%= file.jsClassName %></a>
-                <ul class="nav">
-                  <% (file.functions || []).forEach(function(fn) { %>
-                    <% if (fn.ignore) return %>
-                    <li><a href="#<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></a></li>
-                  <% }) %>
-                </ul>
-              </li>
+              <% if (!file.ignore) { %>
+                <li>
+                  <a href="#<%= file.jsClassName %>"><%= file.jsClassName %></a>
+                  <ul class="nav">
+                    <% (file.functions || []).forEach(function(fn) { %>
+                      <% if (!fn.ignore) { %>
+                        <li><a href="#<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></a></li>
+                      <% } %>
+                    <% }) %>
+                  </ul>
+                </li>
+              <% } %>
             <% }) %>
           </ul>
         </div>
         <div class="col-md-9 info">
           <% data.forEach(function(file) { %>
-            <% if (file.ignore) return %>
-            <section>
-              <h2 id="<%= file.jsClassName %>"><%= file.jsClassName %></h2>
-              <% (file.functions || []).forEach(function(fn) { %>
-                <% if (fn.ignore) return; %>
-                <section class="panel panel-default">
-                  <div class="panel-heading" id="<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></div>
-                  <div class="panel-body">
-                    <%= fn.description %>
+            <% if (!file.ignore) { %>
+              <section>
+                <h2 id="<%= file.jsClassName %>"><%= file.jsClassName %></h2>
+                <% (file.functions || []).forEach(function(fn) { %>
+                  <% if (!fn.ignore) { %>
                     <%
-                      var args = [];
+                      var args = [], returns = [];
                       fn.args.forEach(function(arg) {
-                        if (arg.isReturn || arg.isSelf || arg.isPayload) return;
-                        args.push(arg);
+                        if (arg.isSelf || arg.isPayload) return;
+                        if (arg.isReturn) returns.push(arg)
+                        else args.push(arg);
                       });
+                      if (!fn.return.isErrorCode) returns.push(fn.return);
+
+                      var signature = [];
+                      args.forEach(function(arg) {
+                        signature.push(arg.name);
+                      });
+                      if (fn.isAsync) signature.push('callback');
                     %>
-                    <% if (args.length > 0) { %>
-                      <div class="panel panel-primary">
-                        <div class="panel-heading">Arguments</div>
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Class</th>
-                              <th>Name</th>
-                              <th>Comment</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% args.forEach(function(arg) { %>
-                              <tr>
-                                <td><%= arg.jsClassName %></td>
-                                <td><%= arg.name %></td>
-                                <td><%= arg.comment %></td>
-                              </tr>
-                            <% }) %>
-                          </tbody>
-                        </table>
+                    <section class="panel panel-default">
+                      <div class="panel-heading" id="<%= file.jsClassName + '-' + fn.jsFunctionName %>"><strong><%= file.jsClassName %><%= fn.isPrototypeMethod ? '.prototype' : '' %>.<%= fn.jsFunctionName %>(<%= signature.join(', ') %>)</strong></div>
+                      <div class="panel-body">
+                        <%= fn.description %>
+                        <% if (args.length > 0) { %>
+                          <div class="panel panel-info">
+                            <div class="panel-heading">Arguments</div>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Class</th>
+                                  <th>Name</th>
+                                  <th>Comment</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% args.forEach(function(arg) { %>
+                                  <tr>
+                                    <td><%= arg.jsClassName %></td>
+                                    <td><%= arg.name %></td>
+                                    <td><%= arg.comment %></td>
+                                  </tr>
+                                <% }) %>
+                               <% if (fn.isAsync) { %>
+                                  <tr>
+                                    <td><strong>Function</strong></td>
+                                    <td>callback</td>
+                                    <td><strong>Takes error and the return value specified below</strong></td>
+                                  </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                          </div>
+                        <% } %>
+                        <% if (returns.length == 1) { %>
+                          <div class="panel panel-warning">
+                            <div class="panel-heading">Return</div>
+                            <table class="table">
+                              <tbody>
+                                <% returns.forEach(function(rn) { %>
+                                  <tr>
+                                    <td><%= rn.jsClassName %></td>
+                                    <td><%= rn.comment %></td>
+                                  </tr>
+                                <% }) %>
+                              </tbody>
+                            </table>
+                          </div>
+                        <% } else if (returns.length > 1) { %>
+                          <div class="panel panel-warning">
+                            <div class="panel-heading">Returns an object with these fields</div>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Class</th>
+                                  <th>Name</th>
+                                  <th>Comment</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% returns.forEach(function(rn) { %>
+                                  <tr>
+                                    <td><%= rn.jsClassName %></td>
+                                    <td><%= rn.name %></td>
+                                    <td><%= rn.comment %></td>
+                                  </tr>
+                                <% }) %>
+                              </tbody>
+                            </table>
+                          </div>
+                        <% } %>
                       </div>
-                    <% } %>
-                  </div>
-                </section>
-              <% }) %>
-            </section>
+                    </section>
+                  <% } %>
+                <% }) %>
+              </section>
+            <% } %>
           <% }) %>
         </div>
       </div>

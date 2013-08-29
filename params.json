@@ -53,7 +53,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Look up the value of one git attribute for path.</p>\n"
       },
@@ -111,7 +112,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Look up a list of git attributes for path.</p>\n"
       },
@@ -163,7 +165,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Loop over all the git attributes for a path.</p>\n"
       },
@@ -184,7 +188,8 @@
         "cppFunctionName": "CacheFlush",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Flush the gitattributes cache.</p>\n"
       },
@@ -218,7 +223,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Add a macro definition.</p>\n"
       }
@@ -257,7 +263,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open blob</p>\n"
       },
@@ -281,7 +288,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "SHA1 hash for this blob.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of a blob.</p>\n"
       },
@@ -304,7 +313,8 @@
         "cppFunctionName": "Content",
         "return": {
           "cType": "const void *",
-          "cppClassName": "Wrapper"
+          "cppClassName": "Wrapper",
+          "comment": "the pointer; NULL if the blob has no contents"
         },
         "description": "<p>Get a read-only buffer with the raw content of a blob.</p>\n"
       },
@@ -327,7 +337,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "git_off_t",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "size on bytes",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the size in bytes of the contents of a blob</p>\n"
       },
@@ -350,7 +362,9 @@
         "cppFunctionName": "IsBinary",
         "return": {
           "cType": "int",
-          "cppClassName": "Boolean"
+          "cppClassName": "Boolean",
+          "comment": "1 if the content of the blob is detected as binary; 0 otherwise.",
+          "jsClassName": "Boolean"
         },
         "description": "<p>Determine if the blob content is most certainly binary or not.</p>\n"
       }
@@ -410,7 +424,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_EINVALIDSPEC or an error code. A proper reference is written in the refs/heads namespace pointing to the provided target commit.",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new branch pointing at a target commit</p>\n"
       },
@@ -433,7 +449,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Delete an existing branch reference.</p>\n"
       },
@@ -477,7 +495,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Loop over all the branches and issue a callback for each one.</p>\n"
       },
@@ -521,7 +541,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EINVALIDSPEC or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Move/rename an existing local branch reference.</p>\n"
       },
@@ -566,7 +588,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; GIT_ENOTFOUND when no matching branch exists, GIT_EINVALIDSPEC, otherwise an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a branch by its name in a repository.</p>\n"
       },
@@ -597,7 +621,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; otherwise an error code (e.g., if the ref is no local or remote branch).",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the name of the given local or remote branch.</p>\n"
       },
@@ -628,7 +654,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; GIT_ENOTFOUND when no remote tracking reference exists, otherwise an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the reference supporting the remote tracking branch,\ngiven a local branch reference.</p>\n"
       },
@@ -658,7 +686,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the upstream configuration for a given local branch</p>\n"
       },
@@ -702,7 +732,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "number of characters in the reference name including the trailing NUL byte; GIT_ENOTFOUND when no remote tracking reference exists, otherwise an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the name of the reference supporting the remote tracking branch,\ngiven the name of a local branch reference.</p>\n"
       },
@@ -725,7 +757,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if HEAD points at the branch, 0 if it isn't, error code otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Determine if the current local branch is pointed at by HEAD.</p>\n"
       },
@@ -769,7 +803,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "Number of characters in the reference name including the trailing NUL byte; GIT_ENOTFOUND when no remote matching remote was found, GIT_EAMBIGUOUS when the branch maps to several remotes, otherwise an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the name of remote that the remote tracking branch belongs to.</p>\n"
       }
@@ -809,7 +845,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EORPHANEDHEAD when HEAD points to a non existing branch, GIT_ERROR otherwise (use giterr_last for information about the error)",
+          "jsClassName": "Number"
         },
         "description": "<p>Updates files in the index and the working tree to match the content of\nthe commit pointed at by HEAD.</p>\n"
       },
@@ -846,7 +884,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ERROR otherwise (use giterr_last for information about the error)",
+          "jsClassName": "Number"
         },
         "description": "<p>Updates files in the working tree to match the content of the index.</p>\n"
       },
@@ -883,7 +923,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ERROR otherwise (use giterr_last for information about the error)",
+          "jsClassName": "Number"
         },
         "description": "<p>Updates files in the index and working tree to match the content of the\ntree pointed at by the treeish.</p>\n"
       }
@@ -944,7 +986,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a commit object from a repository,\ngiven a prefix of its identifier (short id).</p>\n"
       },
@@ -969,7 +1013,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open commit</p>\n"
       },
@@ -993,7 +1038,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "object identity for the commit.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of a commit.</p>\n"
       },
@@ -1016,7 +1063,9 @@
         "cppFunctionName": "MessageEncoding",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "NULL, or the encoding",
+          "jsClassName": "String"
         },
         "description": "<p>Get the encoding for the message of a commit,\nas a string representing a standard encoding name.</p>\n"
       },
@@ -1039,7 +1088,9 @@
         "cppFunctionName": "Message",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the message of a commit",
+          "jsClassName": "String"
         },
         "description": "<p>Get the full message of a commit.</p>\n"
       },
@@ -1062,7 +1113,9 @@
         "cppFunctionName": "Time",
         "return": {
           "cType": "git_time_t",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "the time of a commit",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the commit time (i.e. committer time) of a commit.</p>\n"
       },
@@ -1085,7 +1138,9 @@
         "cppFunctionName": "Offset",
         "return": {
           "cType": "int",
-          "cppClassName": "Integer"
+          "cppClassName": "Integer",
+          "comment": "positive or negative timezone offset, in minutes from UTC",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the commit timezone offset (i.e. committer&#39;s preferred timezone) of a commit.</p>\n"
       },
@@ -1109,7 +1164,9 @@
         "return": {
           "cType": "const git_signature *",
           "cppClassName": "GitSignature",
-          "copy": "git_signature_dup"
+          "copy": "git_signature_dup",
+          "comment": "the committer of a commit",
+          "jsClassName": "Signature"
         },
         "description": "<p>Get the committer of a commit.</p>\n"
       },
@@ -1133,7 +1190,9 @@
         "return": {
           "cType": "const git_signature *",
           "cppClassName": "GitSignature",
-          "copy": "git_signature_dup"
+          "copy": "git_signature_dup",
+          "comment": "the author of a commit",
+          "jsClassName": "Signature"
         },
         "description": "<p>Get the author of a commit.</p>\n"
       },
@@ -1166,7 +1225,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the tree pointed to by a commit.</p>\n"
       },
@@ -1190,7 +1251,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the id of tree pointed to by commit.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of the tree pointed to by a commit. This differs from\n<code>git_commit_tree</code> in that no attempts are made to fetch an object\nfrom the ODB.</p>\n"
       },
@@ -1213,7 +1276,9 @@
         "cppFunctionName": "ParentCount",
         "return": {
           "cType": "unsigned int",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "integer of count of parents",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of parents of this commit</p>\n"
       },
@@ -1253,7 +1318,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the specified parent of the commit.</p>\n"
       },
@@ -1284,7 +1351,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the id of the parent, NULL on error.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the oid of a specified parent for a commit. This is different from\n<code>git_commit_parent</code>, which will attempt to load the parent commit from\nthe ODB.</p>\n"
       },
@@ -1323,7 +1392,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; GIT_ENOTFOUND if no matching ancestor exists or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the commit object that is the <n>th generation ancestor\nof the named commit object, following only the first parents.\nThe returned commit has to be freed by the caller.</p>\n"
       },
@@ -1396,7 +1467,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create new commit in the repository using a variable argument list.</p>\n"
       }
@@ -1441,7 +1513,8 @@
         "cppFunctionName": "GitLibgit2Version",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Return the version of the libgit2 library\nbeing currently used.</p>\n"
       },
@@ -1456,7 +1529,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "A combination of GIT_CAP_* values. - GIT_CAP_THREADS Libgit2 was compiled with thread support. Note that thread support is still to be seen as a 'work in progress' - basic object lookups are believed to be threadsafe, but other operations may not be. - GIT_CAP_HTTPS Libgit2 supports the https:// protocol. This requires the openssl library to be found when compiling libgit2.",
+          "jsClassName": "Number"
         },
         "description": "<p>Query compile time options for libgit2.</p>\n"
       },
@@ -1479,7 +1554,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Set or query a library global option</p>\n"
       }
@@ -1520,7 +1597,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if a global configuration file has been found. Its path will be stored in `buffer`.",
+          "jsClassName": "Number"
         },
         "description": "<p>Locate the path to the global configuration file</p>\n"
       },
@@ -1551,7 +1630,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if a xdg compatible configuration file has been found. Its path will be stored in `buffer`.",
+          "jsClassName": "Number"
         },
         "description": "<p>Locate the path to the global xdg compatible configuration file</p>\n"
       },
@@ -1582,7 +1663,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if a system configuration file has been found. Its path will be stored in `buffer`.",
+          "jsClassName": "Number"
         },
         "description": "<p>Locate the path to the system configuration file</p>\n"
       },
@@ -1606,7 +1689,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Open the global, XDG and system configuration files</p>\n"
       },
@@ -1630,7 +1715,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Allocate a new configuration object</p>\n"
       },
@@ -1675,7 +1762,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EEXISTS when adding more than one file for a given priority level (and force_replace set to 0), or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a generic config file instance to an existing config</p>\n"
       },
@@ -1720,7 +1809,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EEXISTS when adding more than one file for a given priority level (and force_replace set to 0), GIT_ENOTFOUND when the file doesn't exist or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add an on-disk config file instance to an existing config</p>\n"
       },
@@ -1751,7 +1842,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND when the file doesn't exist or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new config instance containing a single on-disk file</p>\n"
       },
@@ -1789,7 +1882,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_ENOTFOUND if the passed level cannot be found in the multi-level parent config, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Build a single-level focused config object from a multi-level one.</p>\n"
       },
@@ -1813,7 +1908,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Reload changed config files</p>\n"
       },
@@ -1836,7 +1933,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the configuration and its associated memory and files</p>\n"
       },
@@ -1874,7 +1972,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the git_config_entry of a config variable.</p>\n"
       },
@@ -1912,7 +2012,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the value of an integer config variable.</p>\n"
       },
@@ -1950,7 +2052,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the value of a long integer config variable.</p>\n"
       },
@@ -1988,7 +2092,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the value of a boolean config variable.</p>\n"
       },
@@ -2026,7 +2132,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the value of a string config variable.</p>\n"
       },
@@ -2078,7 +2186,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Get each value of a multivar.</p>\n"
       },
@@ -2116,7 +2225,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the value of an integer config variable in the config file\nwith the highest level (usually the local one).</p>\n"
       },
@@ -2154,7 +2265,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the value of a long integer config variable in the config file\nwith the highest level (usually the local one).</p>\n"
       },
@@ -2192,7 +2305,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the value of a boolean config variable in the config file\nwith the highest level (usually the local one).</p>\n"
       },
@@ -2230,7 +2345,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the value of a string config variable in the config file\nwith the highest level (usually the local one).</p>\n"
       },
@@ -2275,7 +2392,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Set a multivar in the local config file.</p>\n"
       },
@@ -2306,7 +2424,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Delete a config variable from the config file\nwith the highest level (usually the local one).</p>\n"
       },
@@ -2344,7 +2463,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Perform an operation on each config variable.</p>\n"
       },
@@ -2389,7 +2510,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or the return value of the callback which didn't return 0",
+          "jsClassName": "Number"
         },
         "description": "<p>Perform an operation on each config variable matching a regular expression.</p>\n"
       },
@@ -2441,7 +2564,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Query the value of a config variable and return it mapped to\nan integer constant.</p>\n"
       },
@@ -2486,7 +2611,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Maps a string value to an integer constant</p>\n"
       },
@@ -2517,7 +2643,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a string value as a bool.</p>\n"
       },
@@ -2548,7 +2675,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a string value as an int32.</p>\n"
       },
@@ -2579,7 +2707,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a string value as an int64.</p>\n"
       }
@@ -2640,7 +2769,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Stock callback usable as a git_cred_acquire_cb.  This calls\ngit_cred_userpass_plaintext_new unless the protocol has not specified\n<code>GIT_CREDTYPE_USERPASS_PLAINTEXT</code> as an allowed type.</p>\n"
       }
@@ -2677,7 +2807,8 @@
         "cppFunctionName": "PatchFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a git_diff_patch object.</p>\n"
       },
@@ -2700,7 +2831,8 @@
         "return": {
           "cType": "const git_diff_delta *",
           "cppClassName": "GitDelta",
-          "copy": "git_diff_delta_dup"
+          "copy": "git_diff_delta_dup",
+          "jsClassName": "Delta"
         },
         "description": "<p>Get the delta associated with a patch</p>\n"
       },
@@ -2722,7 +2854,8 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of hunks in a patch</p>\n"
       },
@@ -2770,7 +2903,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on error",
+          "jsClassName": "Number"
         },
         "description": "<p>Get line counts of each type in a patch.</p>\n"
       },
@@ -2838,7 +2973,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND if hunk_idx out of range, <0 on error",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the information about a hunk in a patch</p>\n"
       },
@@ -2868,7 +3005,9 @@
         "cppFunctionName": "Lines",
         "return": {
           "cType": "int",
-          "cppClassName": "Int32"
+          "cppClassName": "Int32",
+          "comment": "Number of lines in hunk or -1 if invalid hunk index",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of lines in a hunk.</p>\n"
       },
@@ -2952,7 +3091,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Get data about a line in a hunk of a patch.</p>\n"
       },
@@ -2991,7 +3132,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Serialize the patch to text via callback.</p>\n"
       },
@@ -3023,7 +3166,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the content of a patch as a single diff text.</p>\n"
       }
@@ -3241,7 +3386,8 @@
         "cppFunctionName": "ListFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Deallocate a diff list.</p>\n"
       },
@@ -3272,7 +3418,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Merge one diff list into another.</p>\n"
       },
@@ -3303,7 +3450,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, -1 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Transform a diff list marking file renames, copies, etc.</p>\n"
       },
@@ -3355,7 +3504,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Loop over all deltas in a diff list issuing callbacks.</p>\n"
       },
@@ -3393,7 +3544,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Iterate over a diff generating text output like &quot;git diff --name-status&quot;.</p>\n"
       },
@@ -3416,7 +3569,9 @@
         "cppFunctionName": "StatusChar",
         "return": {
           "cType": "char",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "The single character label for that code",
+          "jsClassName": "String"
         },
         "description": "<p>Look up the single character abbreviation for a delta status code.</p>\n"
       },
@@ -3455,7 +3610,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Iterate over a diff generating text output like &quot;git diff&quot;.</p>\n"
       },
@@ -3478,7 +3635,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "Count of number of deltas in the list",
+          "jsClassName": "Number"
         },
         "description": "<p>Query how many diff records are there in a diff list.</p>\n"
       },
@@ -3507,7 +3666,9 @@
         "cppFunctionName": "NumDeltasOfType",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "Count of number of deltas matching delta_t type",
+          "jsClassName": "Number"
         },
         "description": "<p>Query how many diff deltas are there in a diff list filtered by type.</p>\n"
       },
@@ -3556,7 +3717,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, other value < 0 on error",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the diff delta and patch for an entry in the diff list.</p>\n"
       },
@@ -3616,7 +3779,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback return, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Directly run a diff on two blobs.</p>\n"
       },
@@ -3682,7 +3847,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback return, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Directly run a diff between a blob and a buffer.</p>\n"
       }
@@ -3708,7 +3875,8 @@
         "return": {
           "cType": "const git_error *",
           "cppClassName": "Error",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "A git_error object."
         },
         "description": "<p>Return the last <code>git_error</code> object that was generated for the\ncurrent thread or NULL if no error has occurred.</p>\n"
       },
@@ -3723,7 +3891,8 @@
         "cppFunctionName": "Clear",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Clear the last library error that occurred for this thread.</p>\n"
       },
@@ -3753,7 +3922,8 @@
         "cppFunctionName": "SetString",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the error message string for this thread.</p>\n"
       },
@@ -3768,7 +3938,8 @@
         "cppFunctionName": "SetOOM",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the error message to a special value for memory allocation failure.</p>\n"
       }
@@ -3829,7 +4000,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Count the number of unique commits between two commit objects</p>\n"
       }
@@ -3869,7 +4041,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success",
+          "jsClassName": "Number"
         },
         "description": "<p>Add ignore rules for a repository.</p>\n"
       },
@@ -3892,7 +4066,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success",
+          "jsClassName": "Number"
         },
         "description": "<p>Clear ignore rules that were explicitly added.</p>\n"
       },
@@ -3929,7 +4105,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if ignore rules could be processed for the file (regardless of whether it exists or not), or an error < 0 if they could not.",
+          "jsClassName": "Number"
         },
         "description": "<p>Test if the ignore rules apply to a given path.</p>\n"
       }
@@ -4040,7 +4218,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new bare Git index object as a memory representation\nof the Git index file in &#39;index_path&#39;, without a repository\nto back it.</p>\n"
       },
@@ -4065,7 +4245,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an in-memory index object.</p>\n"
       },
@@ -4089,7 +4271,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free an existing index object.</p>\n"
       },
@@ -4113,7 +4296,9 @@
         "cppFunctionName": "Owner",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "A pointer to the repository",
+          "jsClassName": "Repository"
         },
         "description": "<p>Get the repository this index relates to</p>\n"
       },
@@ -4137,7 +4322,9 @@
         "cppFunctionName": "Caps",
         "return": {
           "cType": "unsigned int",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "A combination of GIT_INDEXCAP values",
+          "jsClassName": "Number"
         },
         "description": "<p>Read index capabilities flags.</p>\n"
       },
@@ -4169,7 +4356,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, -1 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Set index capabilities flags.</p>\n"
       },
@@ -4193,7 +4382,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Update the contents of an existing index object in memory\nby reading from the hard disk.</p>\n"
       },
@@ -4217,7 +4408,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write an existing index object from memory back to disk\nusing an atomic file lock.</p>\n"
       },
@@ -4248,7 +4441,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read a tree into the index file with stats</p>\n"
       },
@@ -4281,7 +4476,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUNMERGED when the index is not clean or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write the index as a tree</p>\n"
       },
@@ -4321,7 +4518,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUNMERGED when the index is not clean or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write the index as a tree to the given repository</p>\n"
       },
@@ -4344,7 +4543,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "integer of count of current entries",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the count of entries currently in the index</p>\n"
       },
@@ -4367,7 +4568,8 @@
         "cppFunctionName": "Clear",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Clear the contents (all the entries) of an index object.\nThis clears the index object in memory; changes must be manually\nwritten to disk for them to take effect.</p>\n"
       },
@@ -4398,7 +4600,9 @@
         "return": {
           "cType": "const git_index_entry *",
           "cppClassName": "GitIndexEntry",
-          "copy": "git_index_entry_dup"
+          "copy": "git_index_entry_dup",
+          "comment": "a pointer to the entry; NULL if out of bounds",
+          "jsClassName": "IndexEntry"
         },
         "description": "<p>Get a pointer to one of the entries in the index</p>\n"
       },
@@ -4437,7 +4641,9 @@
         "return": {
           "cType": "const git_index_entry *",
           "cppClassName": "GitIndexEntry",
-          "copy": "git_index_entry_dup"
+          "copy": "git_index_entry_dup",
+          "comment": "a pointer to the entry; NULL if it was not found",
+          "jsClassName": "IndexEntry"
         },
         "description": "<p>Get a pointer to one of the entries in the index</p>\n"
       },
@@ -4475,7 +4681,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove an entry from the index</p>\n"
       },
@@ -4513,7 +4721,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove all entries from the index under a given directory</p>\n"
       },
@@ -4545,7 +4755,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add or update an index entry from an in-memory struct</p>\n"
       },
@@ -4569,7 +4781,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Return the stage number from a git index entry</p>\n"
       },
@@ -4600,7 +4813,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add or update an index entry from a file on disk</p>\n"
       },
@@ -4631,7 +4846,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove an index entry corresponding to a file on disk</p>\n"
       },
@@ -4668,7 +4885,9 @@
         "cppFunctionName": "Find",
         "return": {
           "cType": "int",
-          "cppClassName": "Int32"
+          "cppClassName": "Int32",
+          "comment": "a zero-based position in the index if found; GIT_ENOTFOUND otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Find the first position of any entries which point to given\npath in the Git index.</p>\n"
       },
@@ -4714,7 +4933,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add or update index entries to represent a conflict</p>\n"
       },
@@ -4766,7 +4987,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Get the index entries that represent a conflict of a single file.</p>\n"
       },
@@ -4797,7 +5019,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Removes the index entries that represent a conflict of a single file.</p>\n"
       },
@@ -4820,7 +5043,8 @@
         "cppFunctionName": "ConflictCleanup",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Remove all conflicts in the index (entries with a stage greater than 0.)</p>\n"
       },
@@ -4842,7 +5066,9 @@
         "cppFunctionName": "HasConflicts",
         "return": {
           "cType": "int",
-          "cppClassName": "Int32"
+          "cppClassName": "Int32",
+          "comment": "1 if at least one conflict is found, 0 otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Determine if the index contains entries representing file conflicts.</p>\n"
       },
@@ -4866,7 +5092,9 @@
         "cppFunctionName": "ReucEntrycount",
         "return": {
           "cType": "unsigned int",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "integer of count of current resolve undo entries",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the count of resolve undo entries currently in the index.</p>\n"
       },
@@ -4904,7 +5132,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if found, < 0 otherwise (GIT_ENOTFOUND)",
+          "jsClassName": "Number"
         },
         "description": "<p>Finds the resolve undo entry that points to the given path in the Git\nindex.</p>\n"
       },
@@ -4936,7 +5166,8 @@
         "return": {
           "cType": "const git_index_reuc_entry *",
           "cppClassName": "IndexReucEntry",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "the resolve undo entry; NULL if not found"
         },
         "description": "<p>Get a resolve undo entry from the index.</p>\n"
       },
@@ -4968,7 +5199,8 @@
         "return": {
           "cType": "const git_index_reuc_entry *",
           "cppClassName": "IndexReucEntry",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "a pointer to the resolve undo entry; NULL if out of bounds"
         },
         "description": "<p>Get a resolve undo entry from the index.</p>\n"
       },
@@ -5042,7 +5274,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Adds a resolve undo entry for a file based on the given parameters.</p>\n"
       },
@@ -5074,7 +5308,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove an resolve undo entry from the index</p>\n"
       },
@@ -5098,7 +5334,9 @@
         "cppFunctionName": "ReucClear",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "comment": "0 or an error code",
+          "jsClassName": "void"
         },
         "description": "<p>Remove all resolve undo entries from the index</p>\n"
       },
@@ -5143,7 +5381,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create a diff list between the repository index and the workdir directory.</p>\n"
       }
@@ -5198,7 +5437,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new streaming indexer instance</p>\n"
       },
@@ -5242,7 +5482,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Add data to the indexer</p>\n"
       },
@@ -5271,7 +5512,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Finalize the pack and index</p>\n"
       },
@@ -5294,7 +5536,8 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the packfile&#39;s hash</p>\n"
       },
@@ -5317,7 +5560,8 @@
         "cppFunctionName": "StreamFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the indexer and its resources</p>\n"
       }
@@ -5382,7 +5626,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "Zero on success; GIT_ENOTFOUND or -1 on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Find a merge base between two commits</p>\n"
       },
@@ -5421,7 +5667,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "Zero on success; GIT_ENOTFOUND or -1 on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Find a merge base given a list of commits</p>\n"
       }
@@ -5476,7 +5724,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "-1 on error, else number of characters in prettified message including the trailing NUL byte",
+          "jsClassName": "Number"
         },
         "description": "<p>Clean up message from excess whitespace and make sure that the last line\nends with a &#39;\\n&#39;.</p>\n"
       }
@@ -5533,7 +5783,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Creates a new iterator for notes</p>\n"
       },
@@ -5556,7 +5808,8 @@
         "cppFunctionName": "GitNoteIteratorFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Frees an git_note_iterator</p>\n"
       },
@@ -5593,7 +5846,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 (no error), GIT_ITEROVER (iteration is done) or an error code (negative value)",
+          "jsClassName": "Number"
         },
         "description": "<p>Returns the current item (note_id and annotated_id) and advance the iterator\ninternally to the next value</p>\n"
       },
@@ -5638,7 +5893,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read the note for an object</p>\n"
       },
@@ -5660,7 +5917,9 @@
         "cppFunctionName": "GitNoteMessage",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the note message",
+          "jsClassName": "String"
         },
         "description": "<p>Get the note message</p>\n"
       },
@@ -5683,7 +5942,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the note object OID",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the note object OID</p>\n"
       },
@@ -5757,7 +6018,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a note for an object</p>\n"
       },
@@ -5808,7 +6071,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove the note for an object</p>\n"
       },
@@ -5831,7 +6096,8 @@
         "cppFunctionName": "GitNoteFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a git_note object</p>\n"
       },
@@ -5862,7 +6128,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the default notes reference for a repository</p>\n"
       },
@@ -5906,7 +6174,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Loop over all the notes within a specified namespace\nand issue a callback for each one.</p>\n"
       }
@@ -5943,7 +6213,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the SHA1 id",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id (SHA1) of a repository object</p>\n"
       },
@@ -5966,7 +6238,9 @@
         "cppFunctionName": "Type",
         "return": {
           "cType": "git_otype",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "the object's type",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the object type of an object</p>\n"
       },
@@ -5990,7 +6264,9 @@
         "cppFunctionName": "Owner",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "the repository who owns this object",
+          "jsClassName": "Repository"
         },
         "description": "<p>Get the repository that owns this object</p>\n"
       },
@@ -6014,7 +6290,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open object</p>\n"
       },
@@ -6037,7 +6314,9 @@
         "cppFunctionName": "Type2string",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the corresponding string representation.",
+          "jsClassName": "String"
         },
         "description": "<p>Convert an object type to it&#39;s string representation.</p>\n"
       },
@@ -6060,7 +6339,9 @@
         "cppFunctionName": "String2type",
         "return": {
           "cType": "git_otype",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "the corresponding git_otype.",
+          "jsClassName": "Number"
         },
         "description": "<p>Convert a string object type representation to it&#39;s git_otype.</p>\n"
       },
@@ -6084,7 +6365,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "true if the type represents a valid loose object type, false otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Determine if the given git_otype is a valid loose object type.</p>\n"
       },
@@ -6107,7 +6390,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "size in bytes of the object",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the size in bytes for the structure which\nacts as an in-memory representation of any given\nobject type.</p>\n"
       },
@@ -6146,7 +6431,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EAMBIGUOUS, GIT_ENOTFOUND or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Recursively peel an object until an object of the specified type is met.</p>\n"
       },
@@ -6180,7 +6467,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create an in-memory copy of a Git object. The copy must be\nexplicitly free&#39;d or it will leak.</p>\n"
       }
@@ -6218,7 +6506,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new object database with no backends.</p>\n"
       },
@@ -6249,7 +6539,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new object database and automatically add\nthe two default backends:</p>\n"
       },
@@ -6288,7 +6580,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a custom backend to an existing Object DB</p>\n"
       },
@@ -6327,7 +6621,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a custom backend to an existing Object DB; this\nbackend will work as an alternate.</p>\n"
       },
@@ -6358,7 +6654,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Add an on-disk alternate to an existing Object DB.</p>\n"
       },
@@ -6382,7 +6680,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open object database.</p>\n"
       },
@@ -6421,7 +6720,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "- 0 if the object was read; - GIT_ENOTFOUND if the object is not in the database.",
+          "jsClassName": "Number"
         },
         "description": "<p>Read an object from the database.</p>\n"
       },
@@ -6466,7 +6767,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "- 0 if the object was read; - GIT_ENOTFOUND if the object is not in the database. - GIT_EAMBIGUOUS if the prefix is ambiguous (several objects match the prefix)",
+          "jsClassName": "Number"
         },
         "description": "<p>Read an object from the database, given a prefix\nof its identifier.</p>\n"
       },
@@ -6510,7 +6813,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "- 0 if the object was read; - GIT_ENOTFOUND if the object is not in the database.",
+          "jsClassName": "Number"
         },
         "description": "<p>Read the header of an object from the database, without\nreading its full contents.</p>\n"
       },
@@ -6541,7 +6846,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "- 1, if the object was found - 0, otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Determine if the given object can be found in the object database.</p>\n"
       },
@@ -6565,7 +6872,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Refresh the object database to load newly added files.</p>\n"
       },
@@ -6604,7 +6913,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>List all objects available in the database</p>\n"
       },
@@ -6658,7 +6969,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write an object directly into the ODB</p>\n"
       },
@@ -6704,7 +7017,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if the stream was created; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Open a stream to write an object into the ODB</p>\n"
       },
@@ -6743,7 +7058,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if the stream was created; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Open a stream to read an object from the ODB</p>\n"
       },
@@ -6789,7 +7106,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Open a stream for writing a pack file to the ODB.</p>\n"
       },
@@ -6835,7 +7153,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Determine the object-ID (sha1 hash) of a data buffer</p>\n"
       },
@@ -6874,7 +7194,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read a file from disk and fill a git_oid with the object id\nthat the file would have if it were written to the Object\nDatabase as an object of the given type (w/o applying filters).\nSimilar functionality to git.git&#39;s <code>git hash-object</code> without\nthe <code>-w</code> flag, however, with the --no-filters flag.\nIf you need filters, see git_repository_hashfile.</p>\n"
       }
@@ -6910,7 +7232,8 @@
         "cppFunctionName": "Data",
         "return": {
           "cType": "const void *",
-          "cppClassName": "Wrapper"
+          "cppClassName": "Wrapper",
+          "comment": "a pointer to the data"
         },
         "description": "<p>Return the data of an ODB object</p>\n"
       },
@@ -6933,7 +7256,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "the size",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the size of an ODB object</p>\n"
       },
@@ -6956,7 +7281,9 @@
         "cppFunctionName": "Type",
         "return": {
           "cType": "git_otype",
-          "cppClassName": "Int32"
+          "cppClassName": "Int32",
+          "comment": "the type",
+          "jsClassName": "Number"
         },
         "description": "<p>Return the type of an ODB object</p>\n"
       },
@@ -6981,7 +7308,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an ODB object</p>\n"
       },
@@ -7005,7 +7333,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "a pointer to the OID",
+          "jsClassName": "Oid"
         },
         "description": "<p>Return the OID of an ODB object</p>\n"
       }
@@ -7046,7 +7376,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a backend for the packfiles.</p>\n"
       }
@@ -7088,7 +7420,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a hex formatted object id into a git_oid.</p>\n"
       },
@@ -7121,7 +7455,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a hex formatted null-terminated string into a git_oid.</p>\n"
       },
@@ -7161,7 +7497,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Parse N characters of a hex formatted object id into a git_oid</p>\n"
       },
@@ -7193,7 +7531,8 @@
         "cppFunctionName": "Fromraw",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Copy an already raw oid into a git_oid structure.</p>\n"
       },
@@ -7225,7 +7564,8 @@
         "cppFunctionName": "Fmt",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Format a git_oid into a hex string.</p>\n"
       },
@@ -7256,7 +7596,8 @@
         "cppFunctionName": "Pathfmt",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Format a git_oid into a loose-object path string.</p>\n"
       },
@@ -7279,7 +7620,9 @@
         "cppFunctionName": "Sha",
         "return": {
           "cType": "char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the c-string; NULL if memory is exhausted. Caller must deallocate the string with git__free().",
+          "jsClassName": "String"
         },
         "description": "<p>Format a git_oid into a newly allocated c-string.</p>\n"
       },
@@ -7317,7 +7660,9 @@
         "cppFunctionName": "Sha",
         "return": {
           "cType": "char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the out buffer pointer, assuming no input parameter errors, otherwise a pointer to an empty string.",
+          "jsClassName": "String"
         },
         "description": "<p>Format a git_oid into a buffer as a hex format c-string.</p>\n"
       },
@@ -7350,7 +7695,8 @@
         "cppFunctionName": "Cpy",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Copy an oid from one structure to another.</p>\n"
       },
@@ -7382,7 +7728,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "<0, 0, >0 if a < b, a == b, a > b.",
+          "jsClassName": "Number"
         },
         "description": "<p>Compare two oid structures.</p>\n"
       },
@@ -7414,7 +7762,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "true if equal, false otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Compare two oid structures for equality</p>\n"
       },
@@ -7453,7 +7803,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 in case of a match",
+          "jsClassName": "Number"
         },
         "description": "<p>Compare the first &#39;len&#39; hexadecimal characters (packets of 4 bits)\nof two oid structures.</p>\n"
       },
@@ -7485,7 +7837,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "GIT_ENOTOID if str is not a valid hex string, 0 in case of a match, GIT_ERROR otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if an oid equals an hex formatted object id.</p>\n"
       },
@@ -7509,7 +7863,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if all zeros, 0 otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check is an oid is all zeros.</p>\n"
       },
@@ -7533,7 +7889,9 @@
         "return": {
           "cType": "git_oid_shorten *",
           "cppClassName": "OidShorten",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "a `git_oid_shorten` instance, NULL if OOM",
+          "jsClassName": "OidShorten"
         },
         "description": "<p>Create a new OID shortener.</p>\n"
       },
@@ -7564,7 +7922,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "the minimal length to uniquely identify all OIDs added so far to the set; or an error code (<0) if an error occurs.",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a new OID to set of shortened OIDs and calculate\nthe minimal length to uniquely identify all the OIDs in\nthe set.</p>\n"
       },
@@ -7588,7 +7948,8 @@
         "cppFunctionName": "ShortenFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free an OID shortener instance</p>\n"
       }
@@ -7629,7 +7990,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Initialize a new packbuilder</p>\n"
       },
@@ -7658,7 +8021,9 @@
         "cppFunctionName": "GitPackbuilderSetThreads",
         "return": {
           "cType": "unsigned int",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "number of actual threads to be used",
+          "jsClassName": "Number"
         },
         "description": "<p>Set number of threads to spawn</p>\n"
       },
@@ -7695,7 +8060,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Insert a single object</p>\n"
       },
@@ -7725,7 +8092,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Insert a root tree object</p>\n"
       },
@@ -7754,7 +8123,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write the new pack and corresponding index file to path.</p>\n"
       },
@@ -7791,7 +8162,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create the new pack and pass each object to the callback</p>\n"
       },
@@ -7813,7 +8186,8 @@
         "cppFunctionName": "GitPackbuilderObjectCount",
         "return": {
           "cType": "uint32_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the total number of objects the packbuilder will write out</p>\n"
       },
@@ -7835,7 +8209,8 @@
         "cppFunctionName": "GitPackbuilderWritten",
         "return": {
           "cType": "uint32_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of objects the packbuilder has already written out</p>\n"
       },
@@ -7858,7 +8233,8 @@
         "cppFunctionName": "GitPackbuilderFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the packbuilder and all associated data</p>\n"
       }
@@ -7899,7 +8275,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new push object</p>\n"
       },
@@ -7930,7 +8308,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set options on a push object</p>\n"
       },
@@ -7961,7 +8341,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a refspec to be pushed</p>\n"
       },
@@ -7985,7 +8367,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Update remote tips after a push</p>\n"
       },
@@ -8009,7 +8393,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Actually push all given refspecs</p>\n"
       },
@@ -8033,7 +8419,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "true if equal, false otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if remote side successfully unpacked</p>\n"
       },
@@ -8070,7 +8458,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Call callback `cb&#39; on each status</p>\n"
       },
@@ -8093,7 +8483,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the given push object</p>\n"
       }
@@ -8145,7 +8536,9 @@
         "return": {
           "cType": "git_reference *",
           "cppClassName": "GitReference",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "the created git_reference or NULL on error",
+          "jsClassName": "Reference"
         },
         "description": "<p>Create a new direct reference from an OID.</p>\n"
       },
@@ -8169,7 +8562,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Suggests that the given refdb compress or optimize its references.\nThis mechanism is implementation specific.  For on-disk reference\ndatabases, for example, this may pack all loose references.</p>\n"
       },
@@ -8193,7 +8587,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open reference database.</p>\n"
       },
@@ -8225,7 +8620,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Sets the custom backend to an existing reference DB</p>\n"
       }
@@ -8275,7 +8672,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read the reflog for the given reference</p>\n"
       },
@@ -8299,7 +8698,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write an existing in-memory reflog object back to disk\nusing an atomic file lock.</p>\n"
       },
@@ -8344,7 +8745,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a new entry to the reflog.</p>\n"
       },
@@ -8374,7 +8777,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Rename the reflog for the given reference</p>\n"
       },
@@ -8397,7 +8802,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Delete the reflog for the given reference</p>\n"
       },
@@ -8420,7 +8827,9 @@
         "cppFunctionName": "Entrycount",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "the number of log entries",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of log entries in a reflog</p>\n"
       },
@@ -8452,7 +8861,9 @@
         "return": {
           "cType": "const git_reflog_entry *",
           "cppClassName": "ReflogEntry",
-          "copy": "fixme"
+          "copy": "fixme",
+          "comment": "the entry; NULL if not found",
+          "jsClassName": "ReflogEntry"
         },
         "description": "<p>Lookup an entry by its index</p>\n"
       },
@@ -8490,7 +8901,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND if the entry doesn't exist or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove an entry from the reflog by its index</p>\n"
       },
@@ -8513,7 +8926,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the old oid",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the old oid</p>\n"
       },
@@ -8536,7 +8951,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the new oid at this time",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the new oid</p>\n"
       },
@@ -8559,7 +8976,9 @@
         "return": {
           "cType": "const git_signature *",
           "cppClassName": "GitSignature",
-          "copy": "git_signature_dup"
+          "copy": "git_signature_dup",
+          "comment": "the committer",
+          "jsClassName": "Signature"
         },
         "description": "<p>Get the committer of this entry</p>\n"
       },
@@ -8581,7 +9000,9 @@
         "cppFunctionName": "EntryMessage",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the log msg",
+          "jsClassName": "String"
         },
         "description": "<p>Get the log message</p>\n"
       },
@@ -8604,7 +9025,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the reflog</p>\n"
       }
@@ -8657,7 +9079,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, ENOTFOUND, EINVALIDSPEC or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a reference by name and resolve immediately to OID.</p>\n"
       },
@@ -8681,7 +9105,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "a pointer to the oid if available, NULL otherwise",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the OID pointed to by a direct reference.</p>\n"
       },
@@ -8704,7 +9130,9 @@
         "cppFunctionName": "SymbolicTarget",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "a pointer to the name if available, NULL otherwise",
+          "jsClassName": "String"
         },
         "description": "<p>Get full name to the reference pointed to by a symbolic reference.</p>\n"
       },
@@ -8727,7 +9155,9 @@
         "cppFunctionName": "Type",
         "return": {
           "cType": "git_ref_t",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "the type",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the type of a reference.</p>\n"
       },
@@ -8750,7 +9180,9 @@
         "cppFunctionName": "Name",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the full name for the ref",
+          "jsClassName": "String"
         },
         "description": "<p>Get the full name of a reference.</p>\n"
       },
@@ -8782,7 +9214,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Resolve a symbolic reference to a direct reference.</p>\n"
       },
@@ -8806,7 +9240,9 @@
         "cppFunctionName": "owner",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "a pointer to the repo",
+          "jsClassName": "Repository"
         },
         "description": "<p>Get the repository where a reference resides.</p>\n"
       },
@@ -8845,7 +9281,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new reference with the same name as the given reference but a\ndifferent symbolic target. The reference must be a symbolic reference,\notherwise this will fail.</p>\n"
       },
@@ -8884,7 +9322,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new reference with the same name as the given reference but a\ndifferent OID target. The reference must be a direct reference, otherwise\nthis will fail.</p>\n"
       },
@@ -8929,7 +9369,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, EINVALIDSPEC, EEXISTS or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Rename an existing reference.</p>\n"
       },
@@ -8953,7 +9395,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Delete an existing reference.</p>\n"
       },
@@ -8995,7 +9439,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Perform a callback on each reference in the repository.</p>\n"
       },
@@ -9019,7 +9465,8 @@
         "cppFunctionName": "GitReferenceFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the given reference.</p>\n"
       },
@@ -9051,7 +9498,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if the same, else a stable but meaningless ordering.",
+          "jsClassName": "Number"
         },
         "description": "<p>Compare two references.</p>\n"
       },
@@ -9100,7 +9549,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Perform a callback on each reference in the repository whose name\nmatches the given pattern.</p>\n"
       },
@@ -9125,7 +9576,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 when no reflog can be found, 1 when it exists; otherwise an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a reflog exists for the specified reference.</p>\n"
       },
@@ -9149,7 +9602,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 when the reference lives in the refs/heads namespace; 0 otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a reference is a local branch.</p>\n"
       },
@@ -9173,7 +9628,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 when the reference lives in the refs/remotes namespace; 0 otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a reference is a remote tracking branch</p>\n"
       },
@@ -9219,7 +9676,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EBUFS if buffer is too small, EINVALIDSPEC or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Normalize reference name and check validity.</p>\n"
       },
@@ -9258,7 +9717,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EAMBIGUOUS, GIT_ENOTFOUND or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Recursively peel reference until object of the specified type is found.</p>\n"
       },
@@ -9281,7 +9742,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the reference name is acceptable; 0 if it isn't",
+          "jsClassName": "Number"
         },
         "description": "<p>Ensure the reference name is well-formed.</p>\n"
       }
@@ -9314,7 +9777,9 @@
         "cppFunctionName": "Src",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the refspec's source specifier",
+          "jsClassName": "String"
         },
         "description": "<p>Get the source specifier</p>\n"
       },
@@ -9337,7 +9802,9 @@
         "cppFunctionName": "Dst",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the refspec's destination specifier",
+          "jsClassName": "String"
         },
         "description": "<p>Get the destination specifier</p>\n"
       },
@@ -9361,7 +9828,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if force update has been set, 0 otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the force update setting</p>\n"
       },
@@ -9392,7 +9861,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the refspec matches, 0 otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a refspec&#39;s source descriptor matches a reference</p>\n"
       },
@@ -9423,7 +9894,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the refspec matches, 0 otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a refspec&#39;s destination descriptor matches a reference</p>\n"
       },
@@ -9468,7 +9941,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_EBUFS or another error",
+          "jsClassName": "Number"
         },
         "description": "<p>Transform a reference to its target following the refspec&#39;s rules</p>\n"
       },
@@ -9513,7 +9988,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_EBUFS or another error",
+          "jsClassName": "Number"
         },
         "description": "<p>Transform a target reference to its source reference following the refspec&#39;s rules</p>\n"
       }
@@ -9550,7 +10027,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Save a remote to its repository&#39;s configuration</p>\n"
       },
@@ -9573,7 +10052,9 @@
         "cppFunctionName": "Name",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "a pointer to the name or NULL for in-memory remotes",
+          "jsClassName": "String"
         },
         "description": "<p>Get the remote&#39;s name</p>\n"
       },
@@ -9596,7 +10077,9 @@
         "cppFunctionName": "Url",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "a pointer to the url",
+          "jsClassName": "String"
         },
         "description": "<p>Get the remote&#39;s url</p>\n"
       },
@@ -9619,7 +10102,9 @@
         "cppFunctionName": "PushUrl",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "a pointer to the url or NULL if no special url for pushing is set",
+          "jsClassName": "String"
         },
         "description": "<p>Get the remote&#39;s url for pushing</p>\n"
       },
@@ -9650,7 +10135,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error value",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the remote&#39;s url</p>\n"
       },
@@ -9681,7 +10168,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error value",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the remote&#39;s url for pushing</p>\n"
       },
@@ -9711,7 +10200,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         }
       },
       {
@@ -9734,7 +10224,8 @@
         "return": {
           "cType": "const git_refspec *",
           "cppClassName": "Refspec",
-          "copy": "fixme"
+          "copy": "fixme",
+          "jsClassName": "Refspec"
         }
       },
       {
@@ -9763,7 +10254,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         }
       },
       {
@@ -9786,7 +10278,8 @@
         "return": {
           "cType": "const git_refspec *",
           "cppClassName": "Refspec",
-          "copy": "fixme"
+          "copy": "fixme",
+          "jsClassName": "Refspec"
         }
       },
       {
@@ -9816,7 +10309,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Open a connection to a remote</p>\n"
       },
@@ -9855,7 +10349,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Get a list of refs at the remote</p>\n"
       },
@@ -9895,7 +10390,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Download the packfile</p>\n"
       },
@@ -9919,7 +10415,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Check whether the remote is connected</p>\n"
       },
@@ -9942,7 +10439,8 @@
         "cppFunctionName": "Stop",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Cancel the operation</p>\n"
       },
@@ -9965,7 +10463,8 @@
         "cppFunctionName": "Disconnect",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Disconnect from the remote</p>\n"
       },
@@ -9989,7 +10488,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free the memory associated with a remote</p>\n"
       },
@@ -10013,7 +10513,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Update the tips to the new state</p>\n"
       },
@@ -10036,7 +10537,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Return whether a string is a valid remote URL</p>\n"
       },
@@ -10059,7 +10561,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Return whether the passed URL is supported by this version of the library.</p>\n"
       },
@@ -10089,7 +10592,8 @@
         "cppFunctionName": "CheckCert",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Choose whether to check the server&#39;s certificate (applies to HTTPS only)</p>\n"
       },
@@ -10126,7 +10630,8 @@
         "cppFunctionName": "SetCredAcquireCb",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set a credentials acquisition callback for this remote. If the remote is\nnot available for anonymous access, then you must set this callback in order\nto provide credentials to the transport at the time of authentication\nfailure so that retry can be performed.</p>\n"
       },
@@ -10158,7 +10663,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Sets a custom transport for the remote. The caller can use this function\nto bypass the automatic discovery of a transport by URL scheme (i.e.\nhttp://, https://, git://) and supply their own transport to be used\ninstead. After providing the transport to a remote using this function,\nthe transport object belongs exclusively to that remote, and the remote will\nfree it when it is freed with git_remote_free.</p>\n"
       },
@@ -10190,7 +10696,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Set the callbacks for a remote</p>\n"
       },
@@ -10213,7 +10720,8 @@
         "cppFunctionName": "Stats",
         "return": {
           "cType": "const git_transfer_progress *",
-          "cppClassName": "TransferProgress"
+          "cppClassName": "TransferProgress",
+          "jsClassName": "TransferProgress"
         },
         "description": "<p>Get the statistics structure that is filled in by the fetch operation.</p>\n"
       },
@@ -10259,7 +10767,8 @@
         "cppFunctionName": "SetAutotag",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the tag auto-follow setting</p>\n"
       },
@@ -10305,7 +10814,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Give the remote a new name</p>\n"
       },
@@ -10329,7 +10839,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Retrieve the update FETCH_HEAD setting.</p>\n"
       },
@@ -10359,7 +10870,8 @@
         "cppFunctionName": "SetUpdateFetchhead",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Sets the update FETCH_HEAD setting.  By default, FETCH_HEAD will be\nupdated on every fetch.  Set to 0 to disable.</p>\n"
       },
@@ -10382,7 +10894,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Ensure the remote name is well-formed.</p>\n"
       }
@@ -10440,7 +10953,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Open a git repository.</p>\n"
       },
@@ -10472,7 +10987,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a &quot;fake&quot; repository to wrap an object database</p>\n"
       },
@@ -10524,7 +11041,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Look for a git repository and copy its path in the given buffer.\nThe lookup start from base_path and walk across parent directories\nif nothing has been found. The lookup ends when the first repository\nis found, or when reaching a directory referenced in ceiling_dirs\nor when the filesystem changes (in case across_fs is true).</p>\n"
       },
@@ -10570,7 +11089,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND if no repository could be found, or -1 if there was a repository but open failed for some reason (such as repo corruption or system errors).",
+          "jsClassName": "Number"
         },
         "description": "<p>Find and open a repository with extended controls.</p>\n"
       },
@@ -10594,7 +11115,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a previously allocated repository</p>\n"
       },
@@ -10632,7 +11154,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Creates a new Git repository in the given folder.</p>\n"
       },
@@ -10671,7 +11195,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new Git repository in the given folder with extended controls.</p>\n"
       },
@@ -10703,7 +11229,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EORPHANEDHEAD when HEAD points to a non existing branch, GIT_ENOTFOUND when HEAD is missing; an error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Retrieve and resolve the reference pointed at by HEAD.</p>\n"
       },
@@ -10728,7 +11256,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if HEAD is detached, 0 if it's not; error code if there was an error.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a repository&#39;s HEAD is detached</p>\n"
       },
@@ -10753,7 +11283,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the current branch is an orphan, 0 if it's not; error code if there was an error",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if the current branch is an orphan</p>\n"
       },
@@ -10778,7 +11310,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the repository is empty, 0 if it isn't, error code if the repository is corrupted",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a repository is empty</p>\n"
       },
@@ -10801,7 +11335,9 @@
         "cppFunctionName": "Path",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the path to the repository",
+          "jsClassName": "String"
         },
         "description": "<p>Get the path of this repository</p>\n"
       },
@@ -10824,7 +11360,9 @@
         "cppFunctionName": "Workdir",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the path to the working dir, if it exists",
+          "jsClassName": "String"
         },
         "description": "<p>Get the path of the working directory for this repository</p>\n"
       },
@@ -10863,7 +11401,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the path to the working directory for this repository</p>\n"
       },
@@ -10888,7 +11428,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "1 if the repository is bare, 0 otherwise.",
+          "jsClassName": "Number"
         },
         "description": "<p>Check if a repository is bare</p>\n"
       },
@@ -10920,7 +11462,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the configuration file for this repository.</p>\n"
       },
@@ -10951,7 +11495,8 @@
         "cppFunctionName": "SetConfig",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the configuration file for this repository</p>\n"
       },
@@ -10983,7 +11528,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the Object Database for this repository.</p>\n"
       },
@@ -11014,7 +11561,8 @@
         "cppFunctionName": "SetOdb",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the Object Database for this repository</p>\n"
       },
@@ -11046,7 +11594,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the Reference Database Backend for this repository.</p>\n"
       },
@@ -11077,7 +11627,8 @@
         "cppFunctionName": "SetRefdb",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the Reference Database Backend for this repository</p>\n"
       },
@@ -11109,7 +11660,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the Index file for this repository.</p>\n"
       },
@@ -11140,7 +11693,8 @@
         "cppFunctionName": "SetIndex",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Set the index file for this repository</p>\n"
       },
@@ -11179,7 +11733,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "GIT_ENOUTFOUND if no message exists, other value < 0 for other errors, or total bytes in message (may be > `len`) on success",
+          "jsClassName": "Number"
         },
         "description": "<p>Retrieve git&#39;s prepared message</p>\n"
       },
@@ -11203,7 +11759,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Remove git&#39;s prepared message.</p>\n"
       },
@@ -11228,7 +11785,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, or error",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove all the metadata associated with an ongoing git merge, including\nMERGE_HEAD, MERGE_MSG, etc.</p>\n"
       },
@@ -11267,7 +11826,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND, GIT_EUSER or error",
+          "jsClassName": "Number"
         },
         "description": "<p>Call callback &#39;callback&#39; for each entry in the given FETCH_HEAD file.</p>\n"
       },
@@ -11306,7 +11867,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND, GIT_EUSER or error",
+          "jsClassName": "Number"
         },
         "description": "<p>If a merge is in progress, call callback &#39;cb&#39; for each commit ID in the\nMERGE_HEAD file.</p>\n"
       },
@@ -11360,7 +11923,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Calculate hash of file using repository filtering rules.</p>\n"
       },
@@ -11391,7 +11955,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Make the repository HEAD point to the specified reference.</p>\n"
       },
@@ -11422,7 +11988,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Make the repository HEAD directly point to the Commit.</p>\n"
       },
@@ -11446,7 +12014,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EORPHANEDHEAD when HEAD points to a non existing branch or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Detach the HEAD.</p>\n"
       },
@@ -11471,7 +12041,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "The state of the repository",
+          "jsClassName": "Number"
         },
         "description": "<p>Determines the status of a git repository - ie, whether an operation\n(merge, cherry-pick, etc) is in progress.</p>\n"
       },
@@ -11510,7 +12082,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a blob object from a repository.</p>\n"
       },
@@ -11557,7 +12131,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a blob object from a repository,\ngiven a prefix of its identifier (short id).</p>\n"
       },
@@ -11596,7 +12172,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a commit object from a repository.</p>\n"
       },
@@ -11687,7 +12265,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code The created commit will be written to the Object Database and the given reference will be updated to point to it",
+          "jsClassName": "Number"
         },
         "description": "<p>Create new commit in the repository from a list of <code>git_object</code> pointers</p>\n"
       },
@@ -11733,7 +12313,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "a reference to the object",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a reference to one of the objects in a repository.</p>\n"
       },
@@ -11787,7 +12369,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a reference to one of the objects in a repository,\ngiven a prefix of its identifier (short id).</p>\n"
       },
@@ -11820,7 +12404,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new reference database with no backends.</p>\n"
       },
@@ -11853,7 +12439,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new reference database and automatically add\nthe default backends:</p>\n"
       },
@@ -11892,7 +12480,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 error code on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Constructors for default filesystem-based refdb backend</p>\n"
       },
@@ -11931,7 +12521,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, ENOTFOUND, EINVALIDSPEC or an error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a reference by name in a repository.</p>\n"
       },
@@ -11984,7 +12576,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, EEXISTS, EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new symbolic reference.</p>\n"
       },
@@ -12037,7 +12631,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, EEXISTS, EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new direct reference.</p>\n"
       },
@@ -12083,7 +12679,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_EINVALIDSPEC, GIT_EEXISTS or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add a remote with the default fetch refspec to the repository&#39;s configuration.  This\ncalls git_remote_save before returning.</p>\n"
       },
@@ -12130,7 +12728,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a remote in memory</p>\n"
       },
@@ -12162,7 +12762,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Allocate a new revision walker to iterate through a repo.</p>\n"
       },
@@ -12201,7 +12803,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND if submodule does not exist, GIT_EEXISTS if submodule exists in working directory only, -1 on other errors.",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup submodule information by name or path.</p>\n"
       },
@@ -12254,7 +12858,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EEXISTS if submodule already exists, -1 on other errors.",
+          "jsClassName": "Number"
         },
         "description": "<p>Set up a new git submodule for checkout.</p>\n"
       },
@@ -12293,7 +12899,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a tag object from the repository.</p>\n"
       },
@@ -12340,7 +12948,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a tag object from the repository,\ngiven a prefix of its identifier (short id).</p>\n"
       },
@@ -12408,7 +13018,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EINVALIDSPEC or an error code A tag object is written to the ODB, and a proper reference is written in the /refs/tags folder, pointing to it",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new tag in the repository from an object</p>\n"
       },
@@ -12462,7 +13074,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EINVALIDSPEC or an error code A proper reference is written in the /refs/tags folder, pointing to the provided target object",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new lightweight tag pointing at a target object</p>\n"
       },
@@ -12501,7 +13115,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a tree object from the repository.</p>\n"
       },
@@ -12548,7 +13164,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Lookup a tree object from the repository,\ngiven a prefix of its identifier (short id).</p>\n"
       },
@@ -12571,7 +13189,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Reread all submodule info.</p>\n"
       },
@@ -12602,7 +13221,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Delete an existing tag reference.</p>\n"
       },
@@ -12635,7 +13256,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Fill a list with all the tags in the Repository</p>\n"
       },
@@ -12675,7 +13298,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Fill a list with all the tags in the Repository\nwhich name match a defined pattern</p>\n"
       },
@@ -12713,7 +13338,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Call callback `cb&#39; for each tag in the repository</p>\n"
       },
@@ -12756,7 +13382,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Fill a list with all the references that can be found in a repository.</p>\n"
       },
@@ -12803,7 +13431,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write an in-memory buffer to the ODB as a blob</p>\n"
       },
@@ -12844,7 +13474,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read a file from the working folder of a repository\nand write it to the Object Database as a loose blob</p>\n"
       },
@@ -12884,7 +13516,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Read a file from the filesystem and write its content\nto the Object Database as a loose blob</p>\n"
       },
@@ -12937,7 +13571,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Write a loose blob to the Object Database from a\nprovider of chunks of data.</p>\n"
       },
@@ -12973,7 +13609,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get a list of the configured remotes for a repo</p>\n"
       },
@@ -13019,7 +13657,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ERROR otherwise (use giterr_last for information about the error)",
+          "jsClassName": "Number"
         },
         "description": "<p>Clone a remote repository, and checkout the branch pointed to by the remote\nHEAD.</p>\n"
       },
@@ -13058,7 +13698,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0, GIT_ENOTFOUND, GIT_EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the information for a particular remote</p>\n"
       }
@@ -13105,7 +13747,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Sets the current head to the specified commit oid and optionally\nresets the index and working tree to match.</p>\n"
       },
@@ -13142,7 +13786,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success or an error code < 0",
+          "jsClassName": "Number"
         },
         "description": "<p>Updates some entries in the index from the target commit tree.</p>\n"
       }
@@ -13190,7 +13836,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND, GIT_EAMBIGUOUS, GIT_EINVALIDSPEC or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Find a single object, as specified by a revision string. See <code>man gitrevisions</code>,\nor http://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for\ninformation on the syntax accepted.</p>\n"
       },
@@ -13227,7 +13875,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_INVALIDSPEC, GIT_ENOTFOUND, GIT_EAMBIGUOUS or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Parse a revision string for <code>from</code>, <code>to</code>, and intent. See <code>man gitrevisions</code> or\nhttp://git-scm.com/docs/git-rev-parse.html#_specifying_revisions for information\non the syntax accepted.</p>\n"
       }
@@ -13263,7 +13913,8 @@
         "cppFunctionName": "Reset",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Reset the revision walker for reuse.</p>\n"
       },
@@ -13294,7 +13945,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Mark a commit to start traversal from.</p>\n"
       },
@@ -13325,7 +13978,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Push matching references</p>\n"
       },
@@ -13349,7 +14004,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Push the repository&#39;s HEAD</p>\n"
       },
@@ -13380,7 +14037,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Mark a commit (and its ancestors) uninteresting for the output.</p>\n"
       },
@@ -13411,7 +14070,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Hide matching references.</p>\n"
       },
@@ -13435,7 +14096,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Hide the repository&#39;s HEAD</p>\n"
       },
@@ -13466,7 +14129,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Push the OID pointed to by a reference</p>\n"
       },
@@ -13497,7 +14162,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Hide the OID pointed to by a reference</p>\n"
       },
@@ -13530,7 +14197,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if the next commit was found; GIT_ITEROVER if there are no commits left to iterate",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the next commit from the revision walk.</p>\n"
       },
@@ -13560,7 +14229,8 @@
         "cppFunctionName": "Sorting",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Change the sorting mode when iterating through the\nrepository&#39;s contents.</p>\n"
       },
@@ -13592,7 +14262,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Push and hide the respective endpoints of the given range.</p>\n"
       },
@@ -13616,7 +14288,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a revision walker previously allocated.</p>\n"
       },
@@ -13640,7 +14313,9 @@
         "cppFunctionName": "Repository",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "the repository being walked",
+          "jsClassName": "Repository"
         },
         "description": "<p>Return the repository on which this walker\nis operating.</p>\n"
       }
@@ -13757,7 +14432,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new action signature.</p>\n"
       },
@@ -13795,7 +14472,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new action signature with a timestamp of &#39;now&#39;.</p>\n"
       },
@@ -13819,7 +14498,9 @@
         "cppFunctionName": "Dup",
         "return": {
           "cType": "git_signature *",
-          "cppClassName": "GitSignature"
+          "cppClassName": "GitSignature",
+          "comment": "a copy of sig, NULL on out of memory",
+          "jsClassName": "Signature"
         },
         "description": "<p>Create a copy of an existing signature.  All internal strings are also\nduplicated.</p>\n"
       },
@@ -13843,7 +14524,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free an existing signature.</p>\n"
       }
@@ -13906,7 +14588,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND where there's nothing to stash, or error code.",
+          "jsClassName": "Number"
         },
         "description": "<p>Save the local modifications to a new stash.</p>\n"
       },
@@ -13943,7 +14627,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Loop over all the stashed states and issue a callback for each one.</p>\n"
       },
@@ -13973,7 +14659,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Remove a single stashed state from the stash list.</p>\n"
       }
@@ -14020,7 +14708,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Gather file statuses and run a callback for each one.</p>\n"
       },
@@ -14064,7 +14754,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_EUSER on non-zero callback, or error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Gather file status information and run callbacks as requested.</p>\n"
       },
@@ -14101,7 +14793,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, GIT_ENOTFOUND if the file is not found in the HEAD, index, and work tree, GIT_EINVALIDPATH if `path` points at a folder, GIT_EAMBIGUOUS if \"path\" matches multiple files, -1 on other error.",
+          "jsClassName": "Number"
         },
         "description": "<p>Get file status for a single file.</p>\n"
       },
@@ -14138,7 +14832,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if ignore rules could be processed for the file (regardless of whether it exists or not), or an error < 0 if they could not.",
+          "jsClassName": "Number"
         },
         "description": "<p>Test if the ignore rules apply to a given file.</p>\n"
       }
@@ -14180,7 +14876,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close a string array object</p>\n"
       },
@@ -14211,7 +14908,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, < 0 on allocation failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Copy a string array object from source to target.</p>\n"
       }
@@ -14262,7 +14961,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, -1 on error, or non-zero return value of callback",
+          "jsClassName": "Number"
         },
         "description": "<p>Iterate over all tracked submodules of a repository.</p>\n"
       },
@@ -14286,7 +14987,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Resolve the setup of a new git submodule.</p>\n"
       },
@@ -14317,7 +15019,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Add current submodule HEAD commit to index of superproject.</p>\n"
       },
@@ -14341,7 +15045,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Write submodule settings to .gitmodules file.</p>\n"
       },
@@ -14365,7 +15071,9 @@
         "cppFunctionName": "Owner",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "Pointer to `git_repository`",
+          "jsClassName": "Repository"
         },
         "description": "<p>Get the containing repository for a submodule.</p>\n"
       },
@@ -14388,7 +15096,9 @@
         "cppFunctionName": "Name",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "Pointer to the submodule name",
+          "jsClassName": "String"
         },
         "description": "<p>Get the name of submodule.</p>\n"
       },
@@ -14411,7 +15121,9 @@
         "cppFunctionName": "Path",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "Pointer to the submodule path",
+          "jsClassName": "String"
         },
         "description": "<p>Get the path to the submodule.</p>\n"
       },
@@ -14434,7 +15146,9 @@
         "cppFunctionName": "Url",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "Pointer to the submodule url",
+          "jsClassName": "String"
         },
         "description": "<p>Get the URL for the submodule.</p>\n"
       },
@@ -14465,7 +15179,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the URL for the submodule.</p>\n"
       },
@@ -14489,7 +15205,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "Pointer to git_oid or NULL if submodule is not in index.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the OID for the submodule in the index.</p>\n"
       },
@@ -14513,7 +15231,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "Pointer to git_oid or NULL if submodule is not in the HEAD.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the OID for the submodule in the current HEAD tree.</p>\n"
       },
@@ -14538,7 +15258,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "Pointer to git_oid or NULL if submodule is not checked out.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the OID for the submodule in the current working directory.</p>\n"
       },
@@ -14582,7 +15304,9 @@
         "cppFunctionName": "SetIgnore",
         "return": {
           "cType": "git_submodule_ignore_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "old value for ignore",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the ignore rule for the submodule.</p>\n"
       },
@@ -14626,7 +15350,8 @@
         "cppFunctionName": "SetUpdate",
         "return": {
           "cType": "git_submodule_update_t",
-          "cppClassName": "SubmoduleUpdateT"
+          "cppClassName": "SubmoduleUpdateT",
+          "comment": "old value for update"
         },
         "description": "<p>Set the update rule for the submodule.</p>\n"
       },
@@ -14650,7 +15375,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 if fetchRecurseSubmodules is false, 1 if true",
+          "jsClassName": "Number"
         },
         "description": "<p>Read the fetchRecurseSubmodules rule for a submodule.</p>\n"
       },
@@ -14682,7 +15409,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "old value for fetchRecurseSubmodules",
+          "jsClassName": "Number"
         },
         "description": "<p>Set the fetchRecurseSubmodules rule for a submodule.</p>\n"
       },
@@ -14713,7 +15442,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on failure.",
+          "jsClassName": "Number"
         },
         "description": "<p>Copy submodule info into &quot;.git/config&quot; file.</p>\n"
       },
@@ -14736,7 +15467,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Copy submodule remote info into submodule repo.</p>\n"
       },
@@ -14768,7 +15500,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 if submodule repo could not be opened.",
+          "jsClassName": "Number"
         },
         "description": "<p>Open the repository for a submodule.</p>\n"
       },
@@ -14791,7 +15525,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Reread submodule info from config, index, and HEAD.</p>\n"
       },
@@ -14822,7 +15557,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on error",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the status for a submodule.</p>\n"
       },
@@ -14853,7 +15590,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success, <0 on error",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the locations of submodule information.</p>\n"
       }
@@ -14892,7 +15631,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open tag</p>\n"
       },
@@ -14916,7 +15656,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "object identity for the tag.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of a tag.</p>\n"
       },
@@ -14948,7 +15690,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the tagged object of a tag</p>\n"
       },
@@ -14972,7 +15716,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "pointer to the OID",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the OID of the tagged object of a tag</p>\n"
       },
@@ -14995,7 +15741,9 @@
         "cppFunctionName": "TargetType",
         "return": {
           "cType": "git_otype",
-          "cppClassName": "Int32"
+          "cppClassName": "Int32",
+          "comment": "type of the tagged object",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the type of a tag&#39;s tagged object</p>\n"
       },
@@ -15018,7 +15766,9 @@
         "cppFunctionName": "Name",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "name of the tag",
+          "jsClassName": "String"
         },
         "description": "<p>Get the name of a tag</p>\n"
       },
@@ -15042,7 +15792,9 @@
         "return": {
           "cType": "const git_signature *",
           "cppClassName": "GitSignature",
-          "copy": "git_signature_dup"
+          "copy": "git_signature_dup",
+          "comment": "reference to the tag's author or NULL when unspecified",
+          "jsClassName": "Signature"
         },
         "description": "<p>Get the tagger (author) of a tag</p>\n"
       },
@@ -15065,7 +15817,9 @@
         "cppFunctionName": "Message",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "message of the tag or NULL when unspecified",
+          "jsClassName": "String"
         },
         "description": "<p>Get the message of a tag</p>\n"
       },
@@ -15110,7 +15864,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new tag in the repository from a buffer</p>\n"
       },
@@ -15141,7 +15897,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Recursively peel a tag until a non tag git_object is found</p>\n"
       }
@@ -15164,7 +15922,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Init the threading system.</p>\n"
       },
@@ -15178,7 +15938,8 @@
         "cppFunctionName": "Shutdown",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Shutdown the threading system.</p>\n"
       }
@@ -15218,7 +15979,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Sets the system tracing configuration to the specified level with the\nspecified callback.  When system events occur at a level equal to, or\nlower than, the given level they will be reported to the given callback.</p>\n"
       }
@@ -15266,7 +16029,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 for success or an error code for failure",
+          "jsClassName": "Number"
         },
         "description": "<p>Creates a new plain-text username and password credential object.\nThe supplied credential parameter will be internally duplicated.</p>\n"
       },
@@ -15304,7 +16069,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Function to use to create a transport from a URL. The transport database\nis scanned to find a transport that implements the scheme of the URI (i.e.\ngit:// or http://) and a transport object is returned to the caller.</p>\n"
       },
@@ -15342,7 +16109,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an instance of the dummy transport.</p>\n"
       },
@@ -15380,7 +16149,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an instance of the local transport.</p>\n"
       },
@@ -15418,7 +16189,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an instance of the smart transport.</p>\n"
       },
@@ -15449,7 +16222,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an instance of the http subtransport. This subtransport\nalso supports https. On Win32, this subtransport may be implemented\nusing the WinHTTP library.</p>\n"
       },
@@ -15480,7 +16255,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Create an instance of the git subtransport.</p>\n"
       }
@@ -15518,7 +16295,9 @@
         "cppFunctionName": "Dup",
         "return": {
           "cType": "git_tree_entry *",
-          "cppClassName": "GitTreeEntry"
+          "cppClassName": "GitTreeEntry",
+          "comment": "a copy of the original entry or NULL on error (alloc failure)",
+          "jsClassName": "TreeEntry"
         },
         "description": "<p>Duplicate a tree entry</p>\n"
       },
@@ -15543,7 +16322,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a user-owned tree entry</p>\n"
       },
@@ -15566,7 +16346,9 @@
         "cppFunctionName": "Name",
         "return": {
           "cType": "const char *",
-          "cppClassName": "String"
+          "cppClassName": "String",
+          "comment": "the name of the file",
+          "jsClassName": "String"
         },
         "description": "<p>Get the filename of a tree entry</p>\n"
       },
@@ -15590,7 +16372,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "the oid of the object",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of the object pointed by the entry</p>\n"
       },
@@ -15613,7 +16397,9 @@
         "cppFunctionName": "Type",
         "return": {
           "cType": "git_otype",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "the type of the pointed object",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the type of the object pointed by the entry</p>\n"
       },
@@ -15636,7 +16422,9 @@
         "cppFunctionName": "filemode",
         "return": {
           "cType": "git_filemode_t",
-          "cppClassName": "Number"
+          "cppClassName": "Number",
+          "comment": "filemode as an integer",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the UNIX file attributes of a tree entry</p>\n"
       },
@@ -15668,7 +16456,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "<0 if e1 is before e2, 0 if e1 == e2, >0 if e1 is after e2",
+          "jsClassName": "Number"
         },
         "description": "<p>Compare two tree entries</p>\n"
       },
@@ -15707,7 +16497,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Convert a tree entry to the git_object it points too.</p>\n"
       }
@@ -15749,7 +16541,8 @@
         "cppFunctionName": "Free",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Close an open tree</p>\n"
       },
@@ -15773,7 +16566,9 @@
         "return": {
           "cType": "const git_oid *",
           "cppClassName": "GitOid",
-          "copy": "git_oid_dup"
+          "copy": "git_oid_dup",
+          "comment": "object identity for the tree.",
+          "jsClassName": "Oid"
         },
         "description": "<p>Get the id of a tree.</p>\n"
       },
@@ -15797,7 +16592,9 @@
         "cppFunctionName": "Owner",
         "return": {
           "cType": "git_repository *",
-          "cppClassName": "GitRepo"
+          "cppClassName": "GitRepo",
+          "comment": "Repository that contains this tree.",
+          "jsClassName": "Repository"
         },
         "description": "<p>Get the repository that contains the tree.</p>\n"
       },
@@ -15820,7 +16617,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "size_t",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "the number of entries in the tree",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of entries listed in a tree</p>\n"
       },
@@ -15851,7 +16650,9 @@
         "return": {
           "cType": "const git_tree_entry *",
           "cppClassName": "GitTreeEntry",
-          "copy": "git_tree_entry_dup"
+          "copy": "git_tree_entry_dup",
+          "comment": "the tree entry; NULL if not found",
+          "jsClassName": "TreeEntry"
         },
         "description": "<p>Lookup a tree entry by its filename</p>\n"
       },
@@ -15882,7 +16683,9 @@
         "return": {
           "cType": "const git_tree_entry *",
           "cppClassName": "GitTreeEntry",
-          "copy": "git_tree_entry_dup"
+          "copy": "git_tree_entry_dup",
+          "comment": "the tree entry; NULL if not found",
+          "jsClassName": "TreeEntry"
         },
         "description": "<p>Lookup a tree entry by its position in the tree</p>\n"
       },
@@ -15913,7 +16716,9 @@
         "return": {
           "cType": "const git_tree_entry *",
           "cppClassName": "GitTreeEntry",
-          "copy": "git_tree_entry_dup"
+          "copy": "git_tree_entry_dup",
+          "comment": "the tree entry; NULL if not found",
+          "jsClassName": "TreeEntry"
         },
         "description": "<p>Lookup a tree entry by SHA value.</p>\n"
       },
@@ -15952,7 +16757,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; GIT_ENOTFOUND if the path does not exist",
+          "jsClassName": "Number"
         },
         "description": "<p>Retrieve a tree entry contained in a tree or in any of its subtrees,\ngiven its relative path.</p>\n"
       },
@@ -15984,7 +16791,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new tree builder.</p>\n"
       },
@@ -16030,7 +16839,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Traverse the entries in a tree and its subtrees in post or pre order.</p>\n"
       },
@@ -16084,7 +16895,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create a diff list with the difference between two tree objects.</p>\n"
       },
@@ -16137,7 +16949,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create a diff list between a tree and repository index.</p>\n"
       },
@@ -16183,7 +16996,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Create a diff list between a tree and the working directory.</p>\n"
       }
@@ -16233,7 +17047,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 on success; error code otherwise",
+          "jsClassName": "Number"
         },
         "description": "<p>Create a new tree builder.</p>\n"
       },
@@ -16255,7 +17071,8 @@
         "cppFunctionName": "Clear",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Clear all the entires in the builder</p>\n"
       },
@@ -16278,7 +17095,9 @@
         "cppFunctionName": "Size",
         "return": {
           "cType": "unsigned int",
-          "cppClassName": "Uint32"
+          "cppClassName": "Uint32",
+          "comment": "the number of entries in the treebuilder",
+          "jsClassName": "Number"
         },
         "description": "<p>Get the number of entries listed in a treebuilder</p>\n"
       },
@@ -16302,7 +17121,8 @@
         "cppFunctionName": "GitTreebuilderFree",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Free a tree builder</p>\n"
       },
@@ -16333,7 +17153,9 @@
         "return": {
           "cType": "const git_tree_entry *",
           "cppClassName": "GitTreeEntry",
-          "copy": "git_tree_entry_dup"
+          "copy": "git_tree_entry_dup",
+          "comment": "pointer to the entry; NULL if not found",
+          "jsClassName": "TreeEntry"
         },
         "description": "<p>Get an entry from the builder from its filename</p>\n"
       },
@@ -16387,7 +17209,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "comment": "0 or an error code",
+          "jsClassName": "Number"
         },
         "description": "<p>Add or update an entry to the builder</p>\n"
       },
@@ -16418,7 +17242,8 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number"
         },
         "description": "<p>Remove an entry from the builder by its filename</p>\n"
       },
@@ -16456,7 +17281,8 @@
         "cppFunctionName": "Filter",
         "return": {
           "cType": "void",
-          "cppClassName": "void"
+          "cppClassName": "void",
+          "jsClassName": "void"
         },
         "description": "<p>Filter the entries in the tree</p>\n"
       },
@@ -16496,7 +17322,9 @@
         "return": {
           "cType": "int",
           "cppClassName": "Int32",
-          "isErrorCode": true
+          "isErrorCode": true,
+          "jsClassName": "Number",
+          "comment": "0 or an error code"
         },
         "description": "<p>Write the contents of the tree builder as a tree object</p>\n"
       }
