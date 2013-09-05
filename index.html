@@ -25,129 +25,197 @@
       <div class="row">
         <div class="col-md-3 files">
           <ul class="nav nav-stacked">
-            <% data.forEach(function(file) { %>
-              <% if (!file.ignore) { %>
-                <li>
-                  <a href="#<%= file.jsClassName %>"><%= file.jsClassName %></a>
-                  <ul class="nav">
-                    <% (file.functions || []).forEach(function(fn) { %>
-                      <% if (!fn.ignore) { %>
-                        <li><a href="#<%= file.jsClassName + '-' + fn.jsFunctionName %>"><%= fn.jsFunctionName %></a></li>
-                      <% } %>
-                    <% }) %>
-                  </ul>
-                </li>
-              <% } %>
+            <% dox.forEach(function(klass) { %>
+              <li>
+                <a href="#<%= klass.name %>"><%= klass.name %></a>
+                <ul class="nav">
+                  <% (klass.objects).forEach(function(object) { %>
+                    <% if (!object.ignore && object.ctx && object.ctx.type == 'method') { %>
+                      <li><a href="#<%= klass.name + '-' + object.ctx.name %>"><%= object.ctx.name %></a></li>
+                    <% } %>
+                  <% }) %>
+                </ul>
+              </li>
             <% }) %>
           </ul>
         </div>
         <div class="col-md-9 info">
-          <% data.forEach(function(file) { %>
-            <% if (!file.ignore) { %>
-              <section>
-                <h2 id="<%= file.jsClassName %>"><%= file.jsClassName %></h2>
-                <% (file.functions || []).forEach(function(fn) { %>
-                  <% if (!fn.ignore) { %>
-                    <%
-                      var args = [], returns = [];
-                      fn.args.forEach(function(arg) {
-                        if (arg.isSelf || arg.isPayload) return;
-                        if (arg.isReturn) returns.push(arg)
-                        else args.push(arg);
-                      });
-                      if (!fn.return.isErrorCode) returns.push(fn.return);
-
-                      var signature = [];
-                      args.forEach(function(arg) {
-                        signature.push(arg.name);
-                      });
-                      if (fn.isAsync) signature.push('callback');
-                    %>
-                    <section class="panel panel-default">
-                      <div class="panel-heading" id="<%= file.jsClassName + '-' + fn.jsFunctionName %>"><strong><%= file.jsClassName %><%= fn.isPrototypeMethod ? '.prototype' : '' %>.<%= fn.jsFunctionName %>(<%= signature.join(', ') %>)</strong></div>
-                      <div class="panel-body">
-                        <%= fn.description %>
-                        <% if (args.length > 0) { %>
-                          <div class="panel panel-info">
-                            <div class="panel-heading">Arguments</div>
-                            <table class="table">
-                              <thead>
+          <% dox.forEach(function(klass) { %>
+            <section>
+              <h2 id="<%= klass.name %>"><%= klass.name %></h2>
+              <% klass.objects.forEach(function(object) { %>
+                <% if (!object.ignore && object.ctx && object.ctx.type == 'method') { %>
+                  <%
+                    var args = [], returns = [], signature = []
+                    object.tags.forEach(function(tag) {
+                      if (tag.type == "param") args.push(tag)
+                      else if (tag.type == "return") returns.push(tag)
+                    })
+                    args.forEach(function(arg) {
+                      signature.push(arg.name)
+                    })
+                  %>
+                  <section class="panel panel-default">
+                    <div class="panel-heading" id="<%= klass.name + '-' + object.ctx.name %>"><strong><%= klass.name %><%= object.constructor ? '.prototype' : '' %>.<%= object.ctx.name %>(<%= signature.join(', ') %>)</strong></div>
+                    <div class="panel-body">
+                      <%= object.description.full %>
+                      <% if (args.length > 0) { %>
+                        <div class="panel panel-info">
+                          <div class="panel-heading">Arguments</div>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Class</th>
+                                <th>Name</th>
+                                <th>Comment</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% args.forEach(function(arg) { %>
                                 <tr>
-                                  <th>Class</th>
-                                  <th>Name</th>
-                                  <th>Comment</th>
+                                  <td><%= arg.types.join(', ') %></td>
+                                  <td><%= arg.name %></td>
+                                  <td><%= arg.description %></td>
                                 </tr>
-                              </thead>
-                              <tbody>
-                                <% args.forEach(function(arg) { %>
-                                  <tr>
-                                    <td><%= arg.jsClassName %></td>
-                                    <td><%= arg.name %></td>
-                                    <td><%= arg.comment %></td>
-                                  </tr>
-                                <% }) %>
-                               <% if (fn.isAsync) { %>
-                                  <tr>
-                                    <td><strong>Function</strong></td>
-                                    <td>callback</td>
-                                    <td><strong>Takes error and the return value specified below</strong></td>
-                                  </tr>
-                                <% } %>
-                              </tbody>
-                            </table>
-                          </div>
-                        <% } %>
-                        <% if (returns.length == 1) { %>
-                          <div class="panel panel-warning">
-                            <div class="panel-heading">Return</div>
-                            <table class="table">
-                              <tbody>
-                                <% returns.forEach(function(rn) { %>
-                                  <tr>
-                                    <td><%= rn.jsClassName %></td>
-                                    <td><%= rn.comment %></td>
-                                  </tr>
-                                <% }) %>
-                              </tbody>
-                            </table>
-                          </div>
-                        <% } else if (returns.length > 1) { %>
-                          <div class="panel panel-warning">
-                            <div class="panel-heading">Returns an object with these fields</div>
-                            <table class="table">
-                              <thead>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      <% } %>
+                      <% if (returns.length == 1) { %>
+                        <div class="panel panel-warning">
+                          <div class="panel-heading">Return</div>
+                          <table class="table">
+                            <tbody>
+                              <% returns.forEach(function(rn) { %>
                                 <tr>
-                                  <th>Class</th>
-                                  <th>Name</th>
-                                  <th>Comment</th>
+                                  <td><%= rn.types.join(', ') %></td>
+                                  <td><%= rn.description %></td>
                                 </tr>
-                              </thead>
-                              <tbody>
-                                <% returns.forEach(function(rn) { %>
-                                  <tr>
-                                    <td><%= rn.jsClassName %></td>
-                                    <td><%= rn.name %></td>
-                                    <td><%= rn.comment %></td>
-                                  </tr>
-                                <% }) %>
-                              </tbody>
-                            </table>
-                          </div>
-                        <% } %>
-                      </div>
-                    </section>
-                  <% } %>
-                <% }) %>
-              </section>
-            <% } %>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      <% } else if (returns.length > 1) { %>
+                        <div class="panel panel-warning">
+                          <div class="panel-heading">Returns an object with these fields</div>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Class</th>
+                                <th>Name</th>
+                                <th>Comment</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% returns.forEach(function(rn) { %>
+                                <tr>
+                                  <td><%= rn.types.join(', ') %></td>
+                                  <td><%= rn.name %></td>
+                                  <td><%= rn.comment %></td>
+                                </tr>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      <% } %>
+                    </div>
+                  </section>
+                <% } %>
+              <% }) %>
+            </section>
           <% }) %>
         </div>
       </div>
     </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/async/0.2.7/async.min.js"></script>
     <script type="text/javascript">
-      $.getJSON('params.json', function(data) {
-        $('.container').append(_.template($('#template').html())({data: data}));
-      });
+      async.parallel([
+        function(callback) {
+          $.getJSON('dox.json', function(data) {
+            callback(null, data) //callback(dox2libgit(data))
+          })
+        },
+        function(callback) {
+          $.getJSON('params.json', function(data) {
+            callback(null, data)
+          })
+        }
+      ],
+      function(err, results) {
+        var dox = results[0],
+            libgit = results[1]
+        $('.container').append(_.template($('#template').html())({dox: merge(dox, libgit)}))
+      })
+      function merge(_dox, libgit) {
+        var dox = {}
+        _dox.forEach(function(object) {
+          if (!object.ctx) return
+          if (object.ctx.type != 'method') return
+
+          if (!(object.ctx.constructor in dox))
+            dox[object.ctx.constructor] = {}
+          dox[object.ctx.constructor][object.ctx.name] = object;
+        })
+
+        libgit.forEach(function(file) {
+          if (file.ignore) return
+          if (!file.functions) return
+
+          if (!(file.jsClassName in dox)) dox[file.jsClassName] = {}
+          var klass = dox[file.jsClassName]
+          file.functions.forEach(function(fn) {
+            if (fn.ignore) return;
+            if (klass[fn.jsFunctionName]) return
+
+            var object = klass[fn.jsFunctionName] = {
+              description: { full: fn.description },
+              ctx: {
+                type: "method",
+                name: fn.jsFunctionName
+              },
+              tags: []
+            }
+            if (fn.isPrototypeMethod)
+              object.ctx.constructor = file.jsClassName
+            else
+              object.ctx.receiver = file.jsClassName
+
+            fn.args.forEach(function(arg) {
+              if (arg.isSelf || arg.isPayload) return;
+              object.tags.push({
+                type: arg.isReturn ? "return" : "param",
+                types: [arg.jsClassName],
+                name: arg.name,
+                description: arg.comment
+              })
+            })
+            if (!fn.return.isErrorCode)
+              object.tags.push({
+                type: "return",
+                types: [fn.return.jsClassName],
+                name: fn.return.name,
+                description: fn.return.comment
+              })
+            if (fn.isAsync)
+              object.tags.push({
+                type: "param",
+                types: ["Function"],
+                name: "callback",
+                description: "Takes error and the return value specified below"
+              })
+          })
+        })
+        result = []
+        Object.keys(dox).sort().forEach(function(className) {
+          var klass = { name: className, objects: [] }
+          Object.keys(dox[className]).sort().forEach(function(objectName) {
+            klass.objects.push(dox[className][objectName])
+          })
+          result.push(klass)
+        })
+        return result;
+      }
     </script>
   </body>
 </html>

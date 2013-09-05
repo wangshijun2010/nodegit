@@ -1,0 +1,2787 @@
+[
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Buffer"
+        ],
+        "description": "content"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the content of the blob.</p>",
+      "summary": "<p>Retrieve the content of the blob.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Blob.prototype.content = function() {\n  return oldContent.call(this).toBuffer(this.size());\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Blob",
+      "cons": "Blob",
+      "name": "content",
+      "string": "Blob.prototype.content()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Retrieve the blob's content as String.</p>",
+      "summary": "<p>Retrieve the blob's content as String.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Blob.prototype.toString = function() {\n  return this.content().toString();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Blob",
+      "cons": "Blob",
+      "name": "toString",
+      "string": "Blob.prototype.toString()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Retrieve the blob's type.</p>",
+      "summary": "<p>Retrieve the blob's type.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Blob.prototype.filemode = function() {\n  return this.isBinary() ? TreeEntry.FileMode.Executable : TreeEntry.FileMode.Blob;\n};\nvar git = require('../'),\n    Commit = git.Commit,\n    events = require('events');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Blob",
+      "cons": "Blob",
+      "name": "filemode",
+      "string": "Blob.prototype.filemode()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the SHA.</p>",
+      "summary": "<p>Retrieve the SHA.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.sha = function() {\n  return this.oid().sha();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "sha",
+      "string": "Commit.prototype.sha()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the commit time as a unix timestamp.</p>",
+      "summary": "<p>Retrieve the commit time as a unix timestamp.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.timeMs = function() {\n  return this.time() * 1000;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "timeMs",
+      "string": "Commit.prototype.timeMs()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Date"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the commit time as a Date object.</p>",
+      "summary": "<p>Retrieve the commit time as a Date object.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.date = function() {\n  return new Date(this.timeMs());\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "date",
+      "string": "Commit.prototype.date()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Tree"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get the tree associated with this commit.</p>",
+      "summary": "<p>Get the tree associated with this commit.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.getTree = function(callback) {\n  this.repo.getTree(this.treeId(), callback);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "getTree",
+      "string": "Commit.prototype.getTree()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "path",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "TreeEntry"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the entry represented by path for this commit.<br />Path must be relative to repository root.</p>",
+      "summary": "<p>Retrieve the entry represented by path for this commit.<br />Path must be relative to repository root.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.getEntry = function(path, callback) {\n  this.getTree(function(error, tree) {\n    if (error) return callback(error);\n\n    tree.getEntry(path, callback);\n  });\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "getEntry",
+      "string": "Commit.prototype.getEntry()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "fires",
+        "string": "Commit#commit"
+      },
+      {
+        "type": "fires",
+        "string": "Commit#end"
+      },
+      {
+        "type": "",
+        "string": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "EventEmitter"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Walk the history from this commit backwards.<br />An EventEmitter is returned that will emit a 'commit' event for each <br />commit in the history, and one 'end' event when the walk is completed.<br />Don't forget to call <code>start()</code> on the returned event.</p>",
+      "summary": "<p>Walk the history from this commit backwards.<br />An EventEmitter is returned that will emit a 'commit' event for each <br />commit in the history, and one 'end' event when the walk is completed.<br />Don't forget to call <code>start()</code> on the returned event.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.history = function() {\n  var event = new events.EventEmitter();\n\n  var oid = this.oid();\n  var revwalk = this.repo.createRevWalk();\n  var commits = [];\n  event.start = function() {\n    revwalk.walk(oid, function commitRevWalk(error, commit) {\n      if (error) return event.emit('error', error);\n\n      if (!commit) {\n        event.emit('end', commits);\n        return;\n      }\n      event.emit('commit', commit);\n      commits.push(commit);\n    });\n  };\n  return event;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "history",
+      "string": "Commit.prototype.history()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "[Commit]"
+        ],
+        "description": "array of commits"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the commit's parents -- as commit objects.</p>",
+      "summary": "<p>Retrieve the commit's parents -- as commit objects.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.getParents = function(callback) {\n  var self = this;\n  function processParents(commit, n, acc, callback) {\n    if (n < 0) return callback(null, acc);\n\n    self.repo.getCommit(self.parentId(n), function nextParent(error, parent) {\n      if (error) return callback(error);\n      processParents(parent, n-1, acc.concat([parent]), callback);\n    });\n  }\n\n  processParents(this, this.parentCount() - 1, [], callback);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "getParents",
+      "string": "Commit.prototype.getParents()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "[Oid]"
+        ],
+        "description": "array of oids"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the commit's parent shas.</p>",
+      "summary": "<p>Retrieve the commit's parent shas.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.parents = function() {\n  var result = [];\n  for (var i = 0; i < this.parentCount(); i++) {\n    result.push(this.parentId(i));\n  }\n  return result;\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "parents",
+      "string": "Commit.prototype.parents()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "[DiffList]"
+        ],
+        "description": "an array of difflists"
+      }
+    ],
+    "description": {
+      "full": "<p>Generate an array of diff trees showing changes between this commit <br />and its parent(s).</p>",
+      "summary": "<p>Generate an array of diff trees showing changes between this commit <br />and its parent(s).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.getDiff = function(callback) {\n  var self = this;\n  self.getParents(function commitParents(error, parents) {\n    if (error) return callback(error);\n\n    var parentDiffLists = [];\n    parents.forEach(function commitEachParent(parent) {\n      parent.getTree(function(error, parentTree) {\n        if (error) return callback(error);\n\n        self.getTree(function(error, thisTree) {\n          if (error) return callback(error);\n\n          parentTree.diff(thisTree, function walkDiffList(error, diffList) {\n            if (error) return callback(error);\n\n            parentDiffLists.push(diffList);\n            if (parentDiffLists.length === parents.length) {\n              callback(null, parentDiffLists);\n            }\n          });\n        });\n      });\n    });\n  });\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "getDiff",
+      "string": "Commit.prototype.getDiff()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>The sha of this commit</p>",
+      "summary": "<p>The sha of this commit</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Commit.prototype.toString = function() {\n  return this.sha();\n};\nfunction ConvenientHunk(raw, i) {\n  this.raw = raw;\n  this.i = i;\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "Commit",
+      "cons": "Commit",
+      "name": "toString",
+      "string": "Commit.prototype.toString()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Diff header string that represents the context of this hunk<br />of the diff. Something like <code>@@ -169,14 +167,12 @@ ...</code></p>",
+      "summary": "<p>Diff header string that represents the context of this hunk<br />of the diff. Something like <code>@@ -169,14 +167,12 @@ ...</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientHunk.prototype.header = function() {\n  return this.raw.hunk(this.i).header;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientHunk",
+      "cons": "ConvenientHunk",
+      "name": "header",
+      "string": "ConvenientHunk.prototype.header()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Number of lines in this hunk</p>",
+      "summary": "<p>Number of lines in this hunk</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientHunk.prototype.size = function() {\n  return this.raw.hunk(this.i).lines;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientHunk",
+      "cons": "ConvenientHunk",
+      "name": "size",
+      "string": "ConvenientHunk.prototype.size()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "[String]"
+        ],
+        "description": "array of strings"
+      }
+    ],
+    "description": {
+      "full": "<p>The lines in this hunk</p>",
+      "summary": "<p>The lines in this hunk</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientHunk.prototype.lines = function() {\n  var result = [];\n  for (var i = 0; i < this.size(); i++)\n    result.push(this.raw.line(this.i, i));\n  return result;\n};\n\nexports.ConvenientHunk = ConvenientHunk;\nvar git = require('../'),\n    DiffList = git.DiffList,\n    ConvenientHunk = require('./convenient_hunk').ConvenientHunk;\n\nfunction ConvenientPatch(raw) {\n  this.raw = raw;\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientHunk",
+      "cons": "ConvenientHunk",
+      "name": "lines",
+      "string": "ConvenientHunk.prototype.lines()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Old name of the file</p>",
+      "summary": "<p>Old name of the file</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.oldFile = function() {\n  return this.raw.delta.oldFile();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "oldFile",
+      "string": "ConvenientPatch.prototype.oldFile()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>New name of the file</p>",
+      "summary": "<p>New name of the file</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.newFile = function() {\n  return this.raw.delta.newFile();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "newFile",
+      "string": "ConvenientPatch.prototype.newFile()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>The number of hunks in this patch</p>",
+      "summary": "<p>The number of hunks in this patch</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.size = function() {\n  return this.raw.patch.size();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "size",
+      "string": "ConvenientPatch.prototype.size()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "[ConvenientHunk]"
+        ],
+        "description": "an array of ConvenientHunks"
+      }
+    ],
+    "description": {
+      "full": "<p>The hunks in this patch</p>",
+      "summary": "<p>The hunks in this patch</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.hunks = function() {\n  var result = [];\n  for (var i = 0; i < this.size(); i++)\n    result.push(new ConvenientHunk(this.raw.patch, i));\n  return result;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "hunks",
+      "string": "ConvenientPatch.prototype.hunks()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>The status of this patch (unmodified, added, deleted)</p>",
+      "summary": "<p>The status of this patch (unmodified, added, deleted)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.status = function() {\n  return this.raw.delta.status();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "status",
+      "string": "ConvenientPatch.prototype.status()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this an unmodified patch?</p>",
+      "summary": "<p>Is this an unmodified patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isUnmodified = function() {\n  return this.status() == DiffList.Delta.Unmodified;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isUnmodified",
+      "string": "ConvenientPatch.prototype.isUnmodified()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this an added patch?</p>",
+      "summary": "<p>Is this an added patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isAdded = function() {\n  return this.status() == DiffList.Delta.Added;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isAdded",
+      "string": "ConvenientPatch.prototype.isAdded()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this a deleted patch?</p>",
+      "summary": "<p>Is this a deleted patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isDeleted = function() {\n  return this.status() == DiffList.Delta.Deleted;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isDeleted",
+      "string": "ConvenientPatch.prototype.isDeleted()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this an modified patch?</p>",
+      "summary": "<p>Is this an modified patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isModified = function() {\n  return this.status() == DiffList.Delta.Modified;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isModified",
+      "string": "ConvenientPatch.prototype.isModified()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this a renamed patch?</p>",
+      "summary": "<p>Is this a renamed patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isRenamed = function() {\n  return this.status() == DiffList.Delta.Renamed;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isRenamed",
+      "string": "ConvenientPatch.prototype.isRenamed()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this a copied patch?</p>",
+      "summary": "<p>Is this a copied patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isCopied = function() {\n  return this.status() == DiffList.Delta.Copied;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isCopied",
+      "string": "ConvenientPatch.prototype.isCopied()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this an ignored patch?</p>",
+      "summary": "<p>Is this an ignored patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isIgnored = function() {\n  return this.status() == DiffList.Delta.Ignored;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isIgnored",
+      "string": "ConvenientPatch.prototype.isIgnored()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this an untracked patch?</p>",
+      "summary": "<p>Is this an untracked patch?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isUntracked = function() {\n  return this.status() == DiffList.Delta.Untracked;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isUntracked",
+      "string": "ConvenientPatch.prototype.isUntracked()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this a type change?</p>",
+      "summary": "<p>Is this a type change?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "ConvenientPatch.prototype.isTypeChange = function() {\n  return this.status() == DiffList.Delta.TypeChange;\n};\n\nexports.ConvenientPatch = ConvenientPatch;\nvar git = require('../'),\n    DiffList = git.DiffList,\n    ConvenientPatch = require('./convenient_patch').ConvenientPatch,\n    events = require('events');",
+    "ctx": {
+      "type": "method",
+      "constructor": "ConvenientPatch",
+      "cons": "ConvenientPatch",
+      "name": "isTypeChange",
+      "string": "ConvenientPatch.prototype.isTypeChange()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "readonly",
+        "string": ""
+      },
+      {
+        "type": "enum",
+        "string": "{Integer}"
+      }
+    ],
+    "description": {
+      "full": "<p>Refer to vendor/libgit2/include/git2/diff.h for delta type definitions.</p>",
+      "summary": "<p>Refer to vendor/libgit2/include/git2/diff.h for delta type definitions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DiffList.Delta = {",
+    "ctx": {
+      "type": "property",
+      "receiver": "DiffList",
+      "name": "Delta",
+      "value": "{",
+      "string": "DiffList.Delta"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0</p>",
+      "summary": "<p>0</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Unmodified: 0,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>1</p>",
+      "summary": "<p>1</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Added: 1,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>2</p>",
+      "summary": "<p>2</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Deleted: 2,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>3</p>",
+      "summary": "<p>3</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Modified: 3,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>4</p>",
+      "summary": "<p>4</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Renamed: 4,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>5</p>",
+      "summary": "<p>5</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Copied: 5,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>6</p>",
+      "summary": "<p>6</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Ignored: 6,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>7</p>",
+      "summary": "<p>7</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Untracked: 7,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>8</p>",
+      "summary": "<p>8</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "TypeChange: 8\n};"
+  },
+  {
+    "tags": [
+      {
+        "type": "readOnly",
+        "string": ""
+      },
+      {
+        "type": "enum",
+        "string": "{String}"
+      }
+    ],
+    "description": {
+      "full": "<p>Refer to vendor/libgit2/include/git2/diff.h for line origin type definitions.</p>",
+      "summary": "<p>Refer to vendor/libgit2/include/git2/diff.h for line origin type definitions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DiffList.LineOrigin = {",
+    "ctx": {
+      "type": "property",
+      "receiver": "DiffList",
+      "name": "LineOrigin",
+      "value": "{",
+      "string": "DiffList.LineOrigin"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>' '</p>",
+      "summary": "<p>' '</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Context: 32,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'+'</p>",
+      "summary": "<p>'+'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Addition: 43,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'-'</p>",
+      "summary": "<p>'-'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Deletion: 45,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'\\n'</p>",
+      "summary": "<p>'\\n'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "AddEofNl: 13,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>''</p>",
+      "summary": "<p>''</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "DelEofNl: 0,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'F'</p>",
+      "summary": "<p>'F'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "FileHdr: 106,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'H'</p>",
+      "summary": "<p>'H'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "HunkHdr: 110,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>'B'</p>",
+      "summary": "<p>'B'</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Binary: 102\n};"
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "[ConvenientPatch]"
+        ],
+        "description": "an array of ConvenientPatches"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve patches in this difflist</p>",
+      "summary": "<p>Retrieve patches in this difflist</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "DiffList.prototype.patches = function() {\n  var size = this.size();\n  result = [];\n  for (var i = 0; i < size; i++) {\n    result.push(new ConvenientPatch(this.patch(i)));\n  }\n  return result;\n};\nvar git = require('../'),\n    Index = git.Index;",
+    "ctx": {
+      "type": "method",
+      "constructor": "DiffList",
+      "cons": "DiffList",
+      "name": "patches",
+      "string": "DiffList.prototype.patches()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "[IndexEntry]"
+        ],
+        "description": "an array of IndexEntrys"
+      }
+    ],
+    "description": {
+      "full": "<p>Return an array of the entries in this index.</p>",
+      "summary": "<p>Return an array of the entries in this index.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Index.prototype.entries = function() {\n  var size = this.size(),\n      result = [];\n  for (var i = 0; i < size; i++) {\n    result.push(this.entry(i));\n  }\n  return result;\n};\nvar git = require('../');\n\ngit.Object.Type = {\n  Any: -2,",
+    "ctx": {
+      "type": "method",
+      "constructor": "Index",
+      "cons": "Index",
+      "name": "entries",
+      "string": "Index.prototype.entries()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; Object can be any of the following</p>",
+      "summary": "<p>&lt; Object can be any of the following</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Bad: -1,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; Object is invalid.</p>",
+      "summary": "<p>&lt; Object is invalid.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Ext1: 0,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; Reserved for future use.</p>",
+      "summary": "<p>&lt; Reserved for future use.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Commit: 1,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; A commit object.</p>",
+      "summary": "<p>&lt; A commit object.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Tree: 2,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; A tree (directory listing) object.</p>",
+      "summary": "<p>&lt; A tree (directory listing) object.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Blob: 3,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; A file revision object.</p>",
+      "summary": "<p>&lt; A file revision object.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Tag: 4,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; An annotated tag object.</p>",
+      "summary": "<p>&lt; An annotated tag object.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Ext2: 5,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; Reserved for future use.</p>",
+      "summary": "<p>&lt; Reserved for future use.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "OffsetDelta: 6,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; A delta, base is given by an offset.</p>",
+      "summary": "<p>&lt; A delta, base is given by an offset.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "OidDelta: 7"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>&lt; A delta, base is given by object id.</p>",
+      "summary": "<p>&lt; A delta, base is given by object id.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "};"
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this object a commit?</p>",
+      "summary": "<p>Is this object a commit?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "git.Object.prototype.isCommit = function() {\n  return this.type() == Object.Type.Commit;\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "git.Object.prototype",
+      "name": "isCommit",
+      "string": "git.Object.prototype.isCommit()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this object a tree?</p>",
+      "summary": "<p>Is this object a tree?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "git.Object.prototype.isTree = function() {\n  return this.type() == Object.Type.Tree;\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "git.Object.prototype",
+      "name": "isTree",
+      "string": "git.Object.prototype.isTree()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this object a blob?</p>",
+      "summary": "<p>Is this object a blob?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "git.Object.prototype.isBlob = function() {\n  return this.type() == Object.Type.Blob;\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "git.Object.prototype",
+      "name": "isBlob",
+      "string": "git.Object.prototype.isBlob()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this object a tag?</p>",
+      "summary": "<p>Is this object a tag?</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "git.Object.prototype.isTag = function() {\n  return this.type() == Object.Type.Tag;\n};\nvar git = require('../'),\n    util = require('./util.js'),\n    Odb = git.Odb;",
+    "ctx": {
+      "type": "method",
+      "receiver": "git.Object.prototype",
+      "name": "isTag",
+      "string": "git.Object.prototype.isTag()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "git.Object"
+        ],
+        "description": "a git odb object"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the object identified by oid.</p>",
+      "summary": "<p>Retrieve the object identified by oid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "util.normalizeOid(Odb.prototype, 'read');\nutil.makeSafe(Odb.prototype, 'read');\nvar git = require('../'),\n    Oid = git.Oid;"
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>The hex representation of the SHA</p>",
+      "summary": "<p>The hex representation of the SHA</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Oid.prototype.toString = function() {\n  return this.sha();\n};\n\nOid.prototype.inspect = function() {\n  return \"[Oid \" + this.sha() + \"]\";\n};\nvar git = require('../'),\n    Reference = git.Reference;\n\nvar oldSymbolicTarget = Reference.prototype.symbolicTarget,\n    oldTarget = Reference.prototype.target;\n\nReference.Type = {\n  Oid: 1,\n  Symbolic: 2,\n  All: 3\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Oid",
+      "cons": "Oid",
+      "name": "toString",
+      "string": "Oid.prototype.toString()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Returns true if this reference is not symbolic</p>",
+      "summary": "<p>Returns true if this reference is not symbolic</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Reference.prototype.isConcrete = function() {\n  return this.type() == Reference.Type.Oid;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Reference",
+      "cons": "Reference",
+      "name": "isConcrete",
+      "string": "Reference.prototype.isConcrete()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Returns true if this reference is symbolic</p>",
+      "summary": "<p>Returns true if this reference is symbolic</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Reference.prototype.isSymbolic = function() {\n  return this.type() == Reference.Type.Symbolic;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Reference",
+      "cons": "Reference",
+      "name": "isSymbolic",
+      "string": "Reference.prototype.isSymbolic()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Reference"
+        ],
+        "description": ""
+      },
+      {
+        "type": "throws",
+        "types": [
+          "if"
+        ],
+        "description": "the target is not symbolic."
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the target of this symbolic reference.</p>",
+      "summary": "<p>Returns the target of this symbolic reference.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Reference.prototype.symbolicTarget = function() {\n  if (!this.isSymbolic()) throw this.name() + \" is not symbolic\";\n\n  return oldSymbolicTarget.call(this);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Reference",
+      "cons": "Reference",
+      "name": "symbolicTarget",
+      "string": "Reference.prototype.symbolicTarget()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Oid"
+        ],
+        "description": ""
+      },
+      {
+        "type": "throws",
+        "types": [
+          "if"
+        ],
+        "description": "the target is symbolic."
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the oid of this non-symbolic reference.</p>",
+      "summary": "<p>Returns the oid of this non-symbolic reference.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Reference.prototype.target = function() {\n  if (!this.isConcrete()) throw this.name() + \" is symbolic\";\n\n  return oldTarget.call(this);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Reference",
+      "cons": "Reference",
+      "name": "target",
+      "string": "Reference.prototype.target()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the name of the reference.</p>",
+      "summary": "<p>Returns the name of the reference.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Reference.prototype.toString = function() {\n return this.name();\n}var git = require('../'),\n    util = require('./util.js'),\n    Repo = git.Repo,\n    Tree = git.Tree,\n    Reference = git.Reference;\n\nvar oldGetReference = Repo.prototype.getReference,\n    oldGetCommit = Repo.prototype.getCommit,\n    oldBlob = Repo.prototype.getBlob,\n    oldGetTree = Repo.prototype.getTree,\n    oldGetTag = Repo.prototype.getTag,\n    oldCreateRevWalk = Repo.prototype.createRevWalk,\n    oldCreateCommit = Repo.prototype.createCommit,\n    oldCreateBlobFromBuffer = Repo.prototype.createBlobFromBuffer;",
+    "ctx": {
+      "type": "method",
+      "constructor": "Reference",
+      "cons": "Reference",
+      "name": "toString",
+      "string": "Reference.prototype.toString()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "name",
+        "description": "Branch name, e.g. 'master'"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Branch"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Look up a branch's most recent commit.</p>",
+      "summary": "<p>Look up a branch's most recent commit.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getBranch = function(name, callback) {\n  var self = this;\n  this.getReference('refs/heads/' + name, function referenceLookupCallback(error, reference) {\n    if (error) return callback(error);\n\n    self.getCommit(reference.target(), function commitLookupCallback(error, commit) {\n      if (error) return callback(error);\n\n      callback(null, commit);\n    });\n  });\n};\nutil.makeSafe(Repo.prototype, 'getBranch');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getBranch",
+      "string": "Repo.prototype.getBranch()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "name",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Reference"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Lookup the reference with the given name.</p>",
+      "summary": "<p>Lookup the reference with the given name.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getReference = function(name, callback) {\n  var self = this;\n  oldGetReference.call(this, name, function(error, reference) {\n    if (error) return callback(error);\n\n    if (reference.type() == Reference.Type.Symbolic) {\n      reference.resolve(function (error, reference) {\n        if (error) return callback(error);\n        reference.repo = self;\n        callback(null, reference);\n      });\n    } else {\n      reference.repo = self;\n      callback(null, reference);\n    }\n  });\n};\nutil.makeSafe(Repo.prototype, 'getReference');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getReference",
+      "string": "Repo.prototype.getReference()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Commit"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the commit identified by oid.</p>",
+      "summary": "<p>Retrieve the commit identified by oid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getCommit = function(oid, callback) {\n  var self = this;\n  oldGetCommit.call(this, oid, function(error, commit) {\n    if (error) return callback(error);\n    commit.repo = self;\n    callback(null, commit);\n  });\n};\nutil.normalizeOid(Repo.prototype, 'getCommit');\nutil.makeSafe(Repo.prototype, 'getCommit');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getCommit",
+      "string": "Repo.prototype.getCommit()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Blob"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the blob represented by the oid.</p>",
+      "summary": "<p>Retrieve the blob represented by the oid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getBlob = function(oid, callback) {\n  var self = this;\n  oldBlob.call(this, oid, function(error, blob) {\n    if (error) return callback(error);\n    blob.repo = self;\n    callback(null, blob);\n  });\n};\nutil.normalizeOid(Repo.prototype, 'getBlob');\nutil.makeSafe(Repo.prototype, 'getBlob');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getBlob",
+      "string": "Repo.prototype.getBlob()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Tree"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the tree represented by the oid.</p>",
+      "summary": "<p>Retrieve the tree represented by the oid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getTree = function(oid, callback) {\n  var self = this;\n  oldGetTree.call(this, oid, function(error, tree) {\n    if (error) return callback(error);\n    tree.repo = self;\n    callback(null, tree);\n  });\n};\nutil.normalizeOid(Repo.prototype, 'getTree');\nutil.makeSafe(Repo.prototype, 'getTree');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getTree",
+      "string": "Repo.prototype.getTree()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Tag"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the tag represented by the oid.</p>",
+      "summary": "<p>Retrieve the tag represented by the oid.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getTag = function(oid, callback) {\n  var self = this;\n  oldGetTag.call(this, oid, callback);\n};\nutil.normalizeOid(Repo.prototype, 'getTag');\nutil.makeSafe(Repo.prototype, 'getTag');",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getTag",
+      "string": "Repo.prototype.getTag()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String",
+          "Oid"
+        ],
+        "name": "String",
+        "description": "sha or Oid"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "RevWalk"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Instantiate a new revision walker for browsing the Repo's history.<br />See also <code>Commit.prototype.history()</code></p>",
+      "summary": "<p>Instantiate a new revision walker for browsing the Repo's history.<br />See also <code>Commit.prototype.history()</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.createRevWalk = function() {\n  var revWalk = oldCreateRevWalk.call(this);\n  revWalk.repo = this;\n  return revWalk;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "createRevWalk",
+      "string": "Repo.prototype.createRevWalk()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Branch"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the master branch.</p>",
+      "summary": "<p>Retrieve the master branch.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.getMaster = function(callback) {\n  this.getBranch('master', callback);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "getMaster",
+      "string": "Repo.prototype.getMaster()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "updateRef",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Signature"
+        ],
+        "name": "author",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Signature"
+        ],
+        "name": "commiter",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "message",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Tree",
+          "Oid",
+          "String"
+        ],
+        "name": "Tree",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Array"
+        ],
+        "name": "parents",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Oid"
+        ],
+        "description": "The oid of the commit"
+      }
+    ],
+    "description": {
+      "full": "<p>Create a commit</p>",
+      "summary": "<p>Create a commit</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.createCommit = function(updateRef, author, committer, message, tree, parents, callback) {\n  if (tree instanceof Tree) {\n    oldCreateCommit.call(\n      this,\n      updateRef,\n      author,\n      committer,\n      null",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "createCommit",
+      "string": "Repo.prototype.createCommit()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>use default message encoding</p>",
+      "summary": "<p>use default message encoding</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "message,\n      tree,\n      parents.length, parents,\n      callback);\n  } else {\n    var self = this;\n    this.getTree(tree, function(error, tree) {\n      if (error) return callback(error);\n      oldCreateCommit.call(\n        self,\n        updateRef,\n        author,\n        committer,\n        null"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>use default message encoding</p>",
+      "summary": "<p>use default message encoding</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "message,\n        tree,\n        parents.length, parents,\n        callback);\n    });\n  }\n};"
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Buffer"
+        ],
+        "name": "buffer",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Blob"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Create a blob from a buffer</p>",
+      "summary": "<p>Create a blob from a buffer</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Repo.prototype.createBlobFromBuffer = function(buffer, callback) {\n  oldCreateBlobFromBuffer.call(this, buffer, buffer.length, callback);\n};var git = require('../'),\n    RevWalk = git.RevWalk;\n\nvar oldSorting = RevWalk.prototype.sorting;",
+    "ctx": {
+      "type": "method",
+      "constructor": "Repo",
+      "cons": "Repo",
+      "name": "createBlobFromBuffer",
+      "string": "Repo.prototype.createBlobFromBuffer()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Refer to vendor/libgit2/include/git2/revwalk.h for sort definitions.</p>",
+      "summary": "<p>Refer to vendor/libgit2/include/git2/revwalk.h for sort definitions.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "RevWalk.Sort = {\n  None: 0,\n  Topological: 1,\n  Time: 2,\n  Reverse: 4\n};",
+    "ctx": {
+      "type": "property",
+      "receiver": "RevWalk",
+      "name": "Sort",
+      "value": "{",
+      "string": "RevWalk.Sort"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "",
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Set the sort order for the revwalk. This function takes variable arguments<br />like <code>revwalk.sorting(git.RevWalk.Topological, git.RevWalk.Reverse).</code></p>",
+      "summary": "<p>Set the sort order for the revwalk. This function takes variable arguments<br />like <code>revwalk.sorting(git.RevWalk.Topological, git.RevWalk.Reverse).</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "RevWalk.prototype.sorting = function() {\n  var sort = 0;\n  for (var i = 0; i < arguments.length; i++)\n    sort |= arguments[i];\n  oldSorting.call(this, sort);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "RevWalk",
+      "cons": "RevWalk",
+      "name": "sorting",
+      "string": "RevWalk.prototype.sorting()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Oid"
+        ],
+        "name": "oid",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Commit"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Walk the history from the given oid. The callback is invoked for each commit;<br />When the walk is over, the callback is invoked with <code>(null, null)</code>.</p>",
+      "summary": "<p>Walk the history from the given oid. The callback is invoked for each commit;<br />When the walk is over, the callback is invoked with <code>(null, null)</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "RevWalk.prototype.walk = function(oid, callback) {\n  var self = this;\n  this.push(oid, function revWalkPush(error) {\n    if (error) return callback(error);\n\n    function walk() {\n      self.next(function revWalkNext(error, oid) {\n        if (error) return callback(new git.error(error.message, error.code));\n        if (!oid) return callback();\n\n        self.repo.getCommit(oid, function revWalkCommitLookup(error, commit) {\n          if (error) return callback(new git.error(error.message, error.code));\n\n          callback(null, commit);\n          walk();\n        });\n      });\n    }\n    walk();\n  });\n};\nvar git = require('../'),\n    Signature = git.Signature;",
+    "ctx": {
+      "type": "method",
+      "constructor": "RevWalk",
+      "cons": "RevWalk",
+      "name": "walk",
+      "string": "RevWalk.prototype.walk()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Standard string representation of an author.</p>",
+      "summary": "<p>Standard string representation of an author.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Signature.prototype.toString = function() {\n  return this.name().toString() + \" <\" + this.email().toString() + \">\";\n};\nvar git = require('../'),\n    Tree = git.Tree,\n    events = require('events'),\n    path = require('path');\n\nvar oldEntryByIndex = Tree.prototype.entryByIndex,\n    oldEntryByName = Tree.prototype.entryByName,\n    oldGetEntry = Tree.prototype.getEntry;",
+    "ctx": {
+      "type": "method",
+      "constructor": "Signature",
+      "cons": "Signature",
+      "name": "toString",
+      "string": "Signature.prototype.toString()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Tree"
+        ],
+        "name": "tree",
+        "description": "to diff against"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "DiffList"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Diff two trees</p>",
+      "summary": "<p>Diff two trees</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.diff = function(that, callback) {\n  this.diffTree(this.repo, that, null, callback);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "diff",
+      "string": "Tree.prototype.diff()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "i",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "TreeEntry"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get an entry at the ith position.</p>",
+      "summary": "<p>Get an entry at the ith position.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.entryByIndex = function(i) {\n  var entry = oldEntryByIndex.call(this, i);\n  entry.parent = this;\n  return entry;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "entryByIndex",
+      "string": "Tree.prototype.entryByIndex()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "name",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "TreeEntry"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get an entry by name; if the tree is a directory, the name is the filename.</p>",
+      "summary": "<p>Get an entry by name; if the tree is a directory, the name is the filename.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.entryByName = function(name) {\n  var entry = oldEntryByName.call(this, name);\n  entry.parent = this;\n  return entry;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "entryByName",
+      "string": "Tree.prototype.entryByName()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "path",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "TreeEntry"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Get an entry at a path. Unlike by name, this takes a fully<br />qualified path, like <code>/foo/bar/baz.javascript</code></p>",
+      "summary": "<p>Get an entry at a path. Unlike by name, this takes a fully<br />qualified path, like <code>/foo/bar/baz.javascript</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.getEntry = function(path, callback) {\n  // FIXME: this method ought to implement the recursion directly, rather than\n  // rely on oldGetEntry, in order to ensure that `parent` pointers are direct.\n  var self = this;\n  oldGetEntry.call(this, path, function(error, entry) {\n    if (error) return callback(error);\n\n    entry.parent = self;\n    entry.path = function() { return path };\n    callback(null, entry);\n  });\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "getEntry",
+      "string": "Tree.prototype.getEntry()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "[TreeEntry]"
+        ],
+        "description": "an array of TreeEntrys"
+      }
+    ],
+    "description": {
+      "full": "<p>Return an array of the entries in this tree (excluding its children).</p>",
+      "summary": "<p>Return an array of the entries in this tree (excluding its children).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.entries = function() {\n  var size = this.size(),\n      result = [];\n  for (var i = 0; i < size; i++) {\n    result.push(this.entryByIndex(i));\n  }\n  return result;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "entries",
+      "string": "Tree.prototype.entries()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "fires",
+        "string": "Tree#entry"
+      },
+      {
+        "type": "fires",
+        "string": "Tree#end"
+      },
+      {
+        "type": "",
+        "string": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Boolean"
+        ],
+        "name": "[blobsOnly",
+        "description": "= true] True to emit only blob & blob executable entries."
+      },
+      {
+        "type": "",
+        "string": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "EventEmitter"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Recursively walk the tree in breadth-first order. Fires an event for each entry.</p>",
+      "summary": "<p>Recursively walk the tree in breadth-first order. Fires an event for each entry.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.walk = function(blobsOnly) {\n  if (typeof blobsOnly == 'undefined') blobsOnly = true;\n\n  var self = this,\n      event = new events.EventEmitter(),\n      entries = [],\n      errors = [];\n\n  var total = 1;\n\n  // This looks like a DFS, but it is a BFS because of implicit queueing in\n  // the recursive call to `entry.getTree(bfs)`\n  function bfs(error, tree) {\n    total--;\n    if (error) return errors.push(error);\n\n    tree.entries().forEach(function (entry) {\n      if (!blobsOnly || entry.isFile()) {\n        event.emit('entry', entry);\n        entries.push(entry);\n      }\n\n      if (entry.isTree()) {\n        total++;\n        entry.getTree(bfs);\n      }\n    });\n    if (total === 0)\n      event.emit('end', errors.length ? errors : null, entries);\n  }\n\n  event.start = function() {\n    bfs(null, self);\n  };\n\n  return event;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "walk",
+      "string": "Tree.prototype.walk()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Return the path of this tree, like <code>/lib/foo/bar</code></p>",
+      "summary": "<p>Return the path of this tree, like <code>/lib/foo/bar</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tree.prototype.path = function(blobsOnly) {\n  return this.entry ? this.entry.path() : '';\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tree",
+      "cons": "Tree",
+      "name": "path",
+      "string": "Tree.prototype.path()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "TreeBuilder"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Make builder. This is helpful for modifying trees.</p>",
+      "summary": "<p>Make builder. This is helpful for modifying trees.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var oldBuilder = Tree.prototype.builder;\nTree.prototype.builder = function() {\n  var builder = oldBuilder.call(this);\n  builder.root = builder;\n  builder.repo = this.repo;\n  return builder;\n};\nvar git = require('../'),\n    TreeBuilder = git.TreeBuilder,\n    TreeEntry = git.TreeEntry,\n    path = require('path');\n\nvar oldInsert = TreeBuilder.prototype.insert;",
+    "ctx": {
+      "type": "declaration",
+      "name": "oldBuilder",
+      "value": "Tree.prototype.builder",
+      "string": "oldBuilder"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "filename",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Oid"
+        ],
+        "name": "oid",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "filemode",
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Insert an object into this tree by oid</p>",
+      "summary": "<p>Insert an object into this tree by oid</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeBuilder.prototype.insert = function(filename, oid, filemode) {\n  if (!this.insertions) this.insertions = [];\n\n  this.insertions.push([filename, oid, filemode]);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeBuilder",
+      "cons": "TreeBuilder",
+      "name": "insert",
+      "string": "TreeBuilder.prototype.insert()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "filename",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Blob"
+        ],
+        "name": "blob",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Boolean"
+        ],
+        "name": "isExecutable",
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Insert a blob into this tree</p>",
+      "summary": "<p>Insert a blob into this tree</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeBuilder.prototype.insertBlob = function(filename, blob, isExecutable) {\n  if (!this.blobs) this.blobs = [];\n\n  this.blobs.push([filename, blob, isExecutable ? TreeEntry.FileMode.Executable : TreeEntry.FileMode.Blob]);\n};\n\nvar oldWrite = TreeBuilder.prototype.write;",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeBuilder",
+      "cons": "TreeBuilder",
+      "name": "insertBlob",
+      "string": "TreeBuilder.prototype.insertBlob()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Write this tree to the repo.</p>",
+      "summary": "<p>Write this tree to the repo.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeBuilder.prototype.write = function(callback) {\n  var self = this;\n  this.doInsertions(function(error) {\n    if (error) return callback(error);\n\n    if (self.builders && self.builders.length) {\n      writeNextLevel(self.repo, self.builders, function(error, previousName, previousTreeId) {\n        if (previousName && previousTreeId) {\n          oldInsert.call(self, previousName, previousTreeId, TreeEntry.FileMode.Tree);\n        }\n        oldWrite.call(self, self.repo, callback);\n      });\n    } else {\n      oldWrite.call(self, self.repo, callback);\n    }\n  })\n};\n\nTreeBuilder.prototype.doInsertions = function(callback) {\n  var self = this;\n\n  this.createBlobs(function(error) {\n    if (error) return callback(error);\n\n    self.doOidInsertions(callback);\n  })\n};\n\nTreeBuilder.prototype.createBlobs = function(callback) {\n  if (!this.blobs || !this.blobs.length) return callback();\n\n  var self = this,\n      data = this.blobs.pop(),\n      path = data[0], buffer = data[1], filemode = data[2];\n\n  this.repo.createBlobFromBuffer(buffer, function(error, blobId) {\n    if (error) return callback(error);\n\n    self.insert(path, blobId, filemode);\n    self.createBlobs(callback);\n  });\n}\n\nTreeBuilder.prototype.doOidInsertions = function(callback) {\n  if (!this.insertions || !this.insertions.length) return callback();\n\n  var self = this,\n      data = this.insertions.pop(),\n      filename = data[0], oid = data[1], filemode = data[2],\n      parts = filename.split(path.sep),\n      pathParts = parts.slice(0, parts.length - 1),\n      filename = parts[parts.length - 1];\n\n  insertOneLevel(this, pathParts, function(error, builder) {\n    if (error) return callback(error);\n    oldInsert.call(builder, filename, oid, filemode);\n    self.doOidInsertions(callback);\n  });\n};\n\nfunction writeNextLevel(repo, builders, callback, previousName, previousTreeId) {\n  var builder = builders.pop();\n  if (!builder) return callback(null, previousName, previousTreeId);\n\n  if (previousName && previousTreeId) {\n    oldInsert.call(builder, previousName, previousTreeId, TreeEntry.FileMode.Tree);\n  }\n  oldWrite.call(builder, repo, function(error, previousTreeId) {\n    if (error) return callback(error);\n\n    previousName = builder.name;\n    writeNextLevel(repo, builders, callback, previousName, previousTreeId);\n  });\n}\n\nfunction insertOneLevel(builder, parts, callback) {\n  if (!parts.length) return callback(null, builder);\n\n\tvar part = parts[0], rest = parts.slice(1, parts.length);\n  if (!part) return insertOneLevel(builder, rest, callback);\n\n  if (!builder.root.builders) builder.root.builders = [];\n  var entry = builder.get(part);\n  if (entry) {\n    if (!entry.isTree()) return callback(\"Invalid path part \" + part);\n  entry.parent = builder;\n\n    entry.getTree(function(error, tree) {\n      if (error) return callback(error);\n\n      var next = tree.builder();\n      next.name = part;\n      next.root = builder.root;\n      builder.root.builders.push(next);\n      insertOneLevel(next, rest, callback);\n    });\n  } else {\n    var next = TreeBuilder.create();\n    next.name = part;\n    next.root = builder.root;\n    builder.root.builders.push(next);\n    insertOneLevel(next, rest, callback);\n  }\n}var git = require('../'),\n    TreeEntry = git.TreeEntry,\n    path = require('path');",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeBuilder",
+      "cons": "TreeBuilder",
+      "name": "write",
+      "string": "TreeBuilder.prototype.write()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "readonly",
+        "string": ""
+      },
+      {
+        "type": "enum",
+        "string": "{Integer}"
+      }
+    ],
+    "description": {
+      "full": "<p>Refer to vendor/libgit2/include/git2/types.h for filemode definitions.</p>",
+      "summary": "<p>Refer to vendor/libgit2/include/git2/types.h for filemode definitions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.FileMode = {",
+    "ctx": {
+      "type": "property",
+      "receiver": "TreeEntry",
+      "name": "FileMode",
+      "value": "{",
+      "string": "TreeEntry.FileMode"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0000000</p>",
+      "summary": "<p>0000000</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "New: 0,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0040000</p>",
+      "summary": "<p>0040000</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Tree: 16384,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0100644</p>",
+      "summary": "<p>0100644</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Blob: 33188,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0100755</p>",
+      "summary": "<p>0100755</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Executable: 33261,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0120000</p>",
+      "summary": "<p>0120000</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Link: 40960,"
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>0160000</p>",
+      "summary": "<p>0160000</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "Commit: 57344\n};"
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this TreeEntry a blob? (i.e., a file)</p>",
+      "summary": "<p>Is this TreeEntry a blob? (i.e., a file)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.isFile = function() {\n  return this.filemode() === TreeEntry.FileMode.Blob ||\n         this.filemode() === TreeEntry.FileMode.Executable;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "isFile",
+      "string": "TreeEntry.prototype.isFile()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this TreeEntry a tree? (i.e., a directory)</p>",
+      "summary": "<p>Is this TreeEntry a tree? (i.e., a directory)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.isTree = function() {\n  return this.filemode() === TreeEntry.FileMode.Tree;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "isTree",
+      "string": "TreeEntry.prototype.isTree()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this TreeEntry a directory? Alias for <code>isTree</code></p>",
+      "summary": "<p>Is this TreeEntry a directory? Alias for <code>isTree</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.isDirectory = TreeEntry.prototype.isTree;",
+    "ctx": {
+      "type": "property",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "isDirectory",
+      "value": "TreeEntry.prototype.isTree",
+      "string": "TreeEntry.prototype.isDirectory"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Boolean"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Is this TreeEntry a blob? Alias for <code>isFile</code></p>",
+      "summary": "<p>Is this TreeEntry a blob? Alias for <code>isFile</code></p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.isBlob = TreeEntry.prototype.isFile;",
+    "ctx": {
+      "type": "property",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "isBlob",
+      "value": "TreeEntry.prototype.isFile",
+      "string": "TreeEntry.prototype.isBlob"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the SHA for this TreeEntry.</p>",
+      "summary": "<p>Retrieve the SHA for this TreeEntry.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.sha = function() {\n  return this.oid().sha();\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "sha",
+      "string": "TreeEntry.prototype.sha()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Tree"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the tree for this entry. Make sure to call <code>isTree</code> first!</p>",
+      "summary": "<p>Retrieve the tree for this entry. Make sure to call <code>isTree</code> first!</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.getTree = function(callback) {\n  var self = this;\n  this.parent.repo.getTree(this.oid(), function(error, tree) {\n    if (error) return callback(error);\n\n    tree.entry = self;\n    callback(null, tree);\n  });\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "getTree",
+      "string": "TreeEntry.prototype.getTree()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Blob"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieve the tree for this entry. Make sure to call <code>isTree</code> first!</p>",
+      "summary": "<p>Retrieve the tree for this entry. Make sure to call <code>isTree</code> first!</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.getBlob = function(callback) {\n  this.parent.repo.getBlob(this.oid(), callback);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "getBlob",
+      "string": "TreeEntry.prototype.getBlob()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": ""
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the path for this entry.</p>",
+      "summary": "<p>Returns the path for this entry.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "TreeEntry.prototype.path = function(callback) {\n  return path.join(this.parent.path(), this.name());\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "path",
+      "string": "TreeEntry.prototype.path()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Alias for <code>path</code></p>",
+      "summary": "<p>Alias for <code>path</code></p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "TreeEntry.prototype.toString = function() {\n  return this.path();\n};\nvar git = require('../');\n\nexports.makeSafe = function(object, key) {\n  var oldFn = object[key];\n  object[key] = function() {\n    try {\n      oldFn.apply(this, arguments);\n    } catch (e) {\n      var callback = arguments[arguments.length - 1];\n      callback(e);\n    }\n  };\n};\n\nexports.normalizeOid = function(object, key) {\n  var oldFn = object[key];\n  object[key] = function() {\n    var oid = arguments[0];\n    if (typeof oid === 'string') oid = git.Oid.fromString(oid);\n    var newArguments = [oid];\n    for (var i = 1; i < arguments.length; i++)\n      newArguments[i] = arguments[i]; \n    oldFn.apply(this, newArguments);\n  };\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "TreeEntry",
+      "cons": "TreeEntry",
+      "name": "toString",
+      "string": "TreeEntry.prototype.toString()"
+    }
+  }
+]
