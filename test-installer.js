@@ -33,6 +33,11 @@ function envOverride(obj) {
   }, obj);
 }
 
+// Convert to the correct system path.
+function systemPath(parts) {
+  return parts.join(path.sep);
+}
+
 // Will be used near the end to configure `node-gyp`.
 var python, cmake;
 
@@ -146,7 +151,9 @@ var dependencies = Q.allSettled([
 .then(function() {
   console.info('[nodegit] Configuring native node module.');
 
-  return Q.nfcall(exec, '.\\node_modules\\.bin\\node-gyp configure --python ' + python, {
+  return Q.nfcall(exec, systemPath([
+    '.', 'node_modules', '.bin', 'node-gyp configure --python ' + python
+  ]), {
     cwd: '.'
   });
 })
@@ -154,7 +161,9 @@ var dependencies = Q.allSettled([
 .then(function() {
   console.info('[nodegit] Building native node module.');
 
-  return Q.nfcall(exec, '.\\node_modules\\.bin\\node-gyp build', {
+  return Q.nfcall(exec, systemPath([
+    '.', 'node_modules', '.bin', 'node-gyp build ' + python
+  ]), {
     cwd: '.'
   });
 })
